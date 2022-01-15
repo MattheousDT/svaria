@@ -1,0 +1,1 @@
+export { shortcutStore } from "./shortcuts";
