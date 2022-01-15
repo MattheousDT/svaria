@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar } from "svaria/components";
+	import { Menubar } from "$lib/components";
 
 	export let height = "5rem";
 </script>

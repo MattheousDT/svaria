@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { shortcuts } from "svaria/actions";
+	import { shortcuts } from "$lib/actions";
 	import Nav from "$site/components/nav.svelte";
 
 	let navHeight: string;
