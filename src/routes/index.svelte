@@ -1,7 +1,7 @@
 <script>
 	import { contextual } from "$lib/actions";
 	import { shortcutStore } from "$lib/stores";
-	import Button from "$site/components/Button.svelte";
+	import Button from "$site/components/button.svelte";
 </script>
 
 <div
