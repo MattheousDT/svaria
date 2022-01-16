@@ -1,6 +1,6 @@
 {
 	"name": "svaria",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -22,7 +22,6 @@
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"sass": "^1.48.0",
-		"svaria": "^0.0.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.9.4",
