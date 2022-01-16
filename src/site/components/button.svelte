@@ -31,10 +31,12 @@
 </script>
 
 <button
+	on:click
 	on:mousemove={handleMouseMove}
 	on:mouseleave={reset}
 	class="offset offset--{color}"
 	style="--left: {$left}px; --top: {$top}px"
+	{...$$restProps}
 >
 	<slot />
 </button>
@@ -50,7 +52,6 @@
 		color: $navy;
 		display: inline-flex;
 		border: 0;
-		margin: 1rem;
 		background: transparent;
 		transform: translate(var(--left), var(--top));
 		cursor: pointer;

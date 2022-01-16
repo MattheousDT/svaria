@@ -19,16 +19,12 @@
 	}}
 	class="container"
 >
-	<h1>Don’t worry about accessibility ever again</h1>
+	<h1 on:keydown={(e) => e}>Don’t worry about accessibility ever again</h1>
 
 	<Button color="lavendar">lavendar</Button>
 	<Button color="rose">rose</Button>
 	<Button color="apricot">apricot</Button>
 	<Button color="tan">tan</Button>
-
-	<pre>
-		{JSON.stringify($shortcutStore, null, 2)}
-	</pre>
 </div>
 
 <style lang="scss">

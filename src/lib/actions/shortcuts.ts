@@ -2,7 +2,11 @@ import { shortcutStore } from "$lib/stores/shortcuts";
 import { get } from "svelte/store";
 
 const shortcuts = (node: HTMLElement): SvelteActionReturnType => {
-	function handleKeyDown(e: KeyboardEvent) {
+	function handleKeyDown(
+		e: KeyboardEvent & {
+			target: EventTarget & HTMLElement;
+		}
+	) {
 		const store = get(shortcutStore);
 
 		const match = store.contextual.find(
@@ -14,7 +18,10 @@ const shortcuts = (node: HTMLElement): SvelteActionReturnType => {
 				!!x.shiftKey === e.shiftKey
 		);
 
-		if (match) match.callback(e);
+		if (match) {
+			e.preventDefault();
+			match.callback(e);
+		}
 	}
 
 	node.addEventListener("keydown", handleKeyDown);

@@ -6,7 +6,7 @@ import path from "path";
 const config = {
 	preprocess: preprocess({
 		scss: {
-			includePaths: ["src/scss"],
+			includePaths: ["src/site/scss"],
 		},
 	}),
 	kit: {

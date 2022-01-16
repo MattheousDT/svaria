@@ -8,14 +8,14 @@ const contextualShortcuts = (
 	function focusIn() {
 		shortcutStore.update((x) => ({
 			...x,
-			contextual: [...x.contextual, ...options.shortcuts.map((y) => ({ ...y, contextId: options.id }))],
+			contextual: [...x.contextual, ...options.shortcuts.map((y) => ({ ...y, origin: options.id }))],
 		}));
 	}
 
 	function focusOut() {
 		shortcutStore.update((x) => ({
 			...x,
-			contextual: x.contextual.filter((y) => y.contextId !== options.id),
+			contextual: x.contextual.filter((y) => y.origin !== options.id),
 		}));
 	}
 

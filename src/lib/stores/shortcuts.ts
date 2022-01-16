@@ -8,12 +8,20 @@ export interface IShortcut {
 	shiftKey?: boolean;
 	name?: string;
 	description?: string;
-	callback: (e: KeyboardEvent) => void;
+	callback: (
+		e: KeyboardEvent & {
+			target: EventTarget & HTMLElement;
+		}
+	) => void;
+}
+
+export interface IShortcutStoreItem extends IShortcut {
+	origin: string;
 }
 
 export interface IShortcutStore {
-	global: IShortcut[];
-	contextual: ({ contextId: string } & IShortcut)[];
+	global: IShortcutStoreItem[];
+	contextual: IShortcutStoreItem[];
 }
 
 export const shortcutStore = writable<IShortcutStore>({

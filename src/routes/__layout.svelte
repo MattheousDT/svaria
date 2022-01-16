@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { shortcuts } from "$lib/actions";
 	import Nav from "$site/components/nav.svelte";
+	import Shortcuts from "$site/components/shortcuts.svelte";
 
 	let navHeight: string;
 </script>
@@ -12,6 +13,8 @@
 	<div style:padding-top={navHeight}>
 		<slot />
 	</div>
+
+	<Shortcuts />
 </div>
 
 <style lang="scss" global>
