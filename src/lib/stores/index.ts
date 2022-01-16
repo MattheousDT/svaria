@@ -1,1 +1,1 @@
-export { shortcutStore } from "./shortcuts";
+export { svariaShortcuts } from "./shortcuts";

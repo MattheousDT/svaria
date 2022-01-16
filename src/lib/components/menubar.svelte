@@ -2,7 +2,9 @@
 	import contextual from "$lib/actions/contextual";
 	import type { IShortcut } from "$lib/stores/shortcuts";
 
+	/** Unique identifier for this menu */
 	export let id: string;
+	/** Description of what this menu is. e.g. Main Navigation */
 	export let label: string;
 
 	let menu: HTMLUListElement;
@@ -61,6 +63,29 @@
 		},
 	];
 </script>
+
+<!--
+	@component
+	Top level menubar component with keyboard shortcut handling pre-applied.
+	
+	To be accompanied with `<MenuItem />` to wrap any interactable elements in your menu
+	
+	**Example usage:**
+	```svelte
+	<Menubar id="main-nav" label="Main Navigation">
+		<MenuItem let:props>
+			<button on:click={() => alert("Hello")} {...props}>
+				Example usage with button
+			</button>
+		</MenuItem>
+		<MenuItem let:props>
+			<a href="/hello" {...props}>
+				Example usage with link
+			</a>
+		</MenuItem>
+	</Menubar>
+	```
+-->
 
 <ul
 	{...$$restProps}

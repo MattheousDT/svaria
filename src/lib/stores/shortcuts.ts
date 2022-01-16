@@ -24,7 +24,9 @@ export interface IShortcutStore {
 	contextual: IShortcutStoreItem[];
 }
 
-export const shortcutStore = writable<IShortcutStore>({
+// TODO: Abstract to custom store to remove update logic from actions
+/** All shortcuts currently available to the context */
+export const svariaShortcuts = writable<IShortcutStore>({
 	global: [],
 	contextual: [],
 });

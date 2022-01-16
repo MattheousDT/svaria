@@ -1,6 +1,5 @@
 <script>
 	import { contextual } from "$lib/actions";
-	import { shortcutStore } from "$lib/stores";
 	import Button from "$site/components/button.svelte";
 </script>
 
