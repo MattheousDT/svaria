@@ -2,10 +2,14 @@
 	import contextual from "$lib/actions/contextual";
 	import type { IShortcut } from "$lib/stores/shortcuts";
 
+	// TODO: Add sub-menu functionality
+
 	/** Unique identifier for this menu */
 	export let id: string;
 	/** Description of what this menu is. e.g. Main Navigation */
 	export let label: string;
+	/** Any extra shortcuts to add to the menu */
+	export let additionalShortcuts: IShortcut[] = [];
 
 	let menu: HTMLUListElement;
 
@@ -23,11 +27,13 @@
 				"Moves focus to the next item in the menubar. If focus is on the last item, moves focus to the first item.",
 			key: "ArrowRight",
 			callback: (event) => {
-				const item = event.target.closest(".svaria__menuitem");
-				if (item.nextElementSibling?.firstElementChild) {
-					(item.nextElementSibling.firstElementChild as HTMLElement).focus();
+				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const currIndex = Array.from(items).indexOf(event.target);
+
+				if (currIndex === menu.children.length - 1) {
+					items[0].focus();
 				} else {
-					(menu.firstElementChild?.firstElementChild as HTMLElement).focus();
+					items[currIndex + 1].focus();
 				}
 			},
 		},
@@ -37,11 +43,13 @@
 				"Moves focus to the previous item in the menubar. If focus is on the first item, moves focus to the last item.",
 			key: "ArrowLeft",
 			callback: (event) => {
-				const item = event.target.closest(".svaria__menuitem");
-				if (item.previousElementSibling?.firstElementChild) {
-					(item.previousElementSibling.firstElementChild as HTMLElement).focus();
+				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const currIndex = Array.from(items).indexOf(event.target);
+
+				if (currIndex === 0) {
+					items[items.length - 1].focus();
 				} else {
-					(menu.lastElementChild?.firstElementChild as HTMLElement).focus();
+					items[currIndex - 1].focus();
 				}
 			},
 		},
@@ -50,7 +58,8 @@
 			description: "Moves focus to first item in the menubar.",
 			key: "Home",
 			callback: () => {
-				(menu.firstElementChild?.firstElementChild as HTMLElement).focus();
+				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				items[0].focus();
 			},
 		},
 		{
@@ -58,7 +67,8 @@
 			description: "Moves focus to last item in the menubar.",
 			key: "End",
 			callback: () => {
-				(menu.lastElementChild?.firstElementChild as HTMLElement).focus();
+				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				items[items.length - 1].focus();
 			},
 		},
 	];
@@ -96,7 +106,7 @@
 	bind:this={menu}
 	use:contextual={{
 		id: "svaria-menubar",
-		shortcuts,
+		shortcuts: [...shortcuts, ...additionalShortcuts],
 	}}
 >
 	<slot />
