@@ -20,8 +20,8 @@
 <svelte:body use:shortcuts={globalShortcuts} />
 
 <div id="app">
-	<Nav bind:height={navHeight} />
-	<div style:padding-top={navHeight}>
+	<!-- <Nav bind:height={navHeight} /> -->
+	<div>
 		<slot />
 	</div>
 

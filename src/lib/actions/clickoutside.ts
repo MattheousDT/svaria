@@ -1,5 +1,3 @@
-type IClickOutsideActionOptions = (event: EventTarget & HTMLElement) => void;
-
 /**
  * Adds a click handler that only fires whenever the click is not the element passed in.
  *
@@ -9,27 +7,27 @@ type IClickOutsideActionOptions = (event: EventTarget & HTMLElement) => void;
  *   let modalOpen = true;
  * </script>
  *
- * <div use:clickoutside={() => (modalOpen = false))} />
+ * <div use:clickoutside on:clickoutside={() => (modalOpen = false)} />
  *   <!-- ^ this element or it's children won't trigger the callback when clicked -->
  * </div>
  * ```
  *
- * @param callback - Callback with the clicked element passed that will run after a valid click has occurred
  */
-const clickoutside = (node: HTMLElement, callback: IClickOutsideActionOptions): SvelteActionReturnType => {
+const clickoutside = (node: HTMLElement): SvelteActionReturnType => {
 	function handleClick(event: MouseEvent) {
 		const target = event.target as EventTarget & HTMLElement;
 		if (node && !node.contains(target) && !event.defaultPrevented) {
-			callback(target);
+			node.dispatchEvent(
+				new CustomEvent("clickoutside", {
+					detail: event.target,
+				})
+			);
 		}
 	}
 
 	window.addEventListener("click", handleClick, true);
 
 	return {
-		update: (newCallback: IClickOutsideActionOptions) => {
-			callback = newCallback;
-		},
 		destroy() {
 			window.removeEventListener("click", handleClick, true);
 		},

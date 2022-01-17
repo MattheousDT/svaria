@@ -1,6 +1,6 @@
 <script lang="ts">
 	/** Props that are required to be spread onto the child element of this component */
-	let props = {
+	let props: svelte.JSX.HTMLProps<HTMLElement> = {
 		role: "menuitem",
 		tabindex: 0,
 	};

@@ -27,6 +27,14 @@ h5 {
 	font-family: "Space Grotesk", sans-serif;
 	font-weight: 700;
 	line-height: 1;
+
+	&:not(:first-child) {
+		margin-top: 0.5em;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 0.5em;
+	}
 }
 
 h1,

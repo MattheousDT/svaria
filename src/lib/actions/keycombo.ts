@@ -1,8 +1,6 @@
 interface IKeycomboOptions {
 	/** Array of {@link KeyboardEvent.key} in the order you want them to be captured */
 	sequence: string[];
-	/** Callback to run after the sequence has completed */
-	callback: () => void;
 }
 
 /**
@@ -25,7 +23,7 @@ interface IKeycomboOptions {
  *   ];
  * </script>
  *
- * <svelte:body use:keycombo={{ sequence: konamiCode, callback: () => alert("Konami code!") }} />
+ * <svelte:body use:keycombo={{ sequence: konamiCode }} on:keycombo={() => alert("Konami code!")} />
  * ```
  *
  * @param options Sequence of keys and callback to run after the sequence has been entered
@@ -40,7 +38,7 @@ const keycombo = (node: HTMLElement, options: IKeycomboOptions): SvelteActionRet
 			pos++;
 
 			if (pos === options.sequence.length) {
-				options.callback();
+				node.dispatchEvent(new CustomEvent("keycombo"));
 				pos = 0;
 			}
 		} else {

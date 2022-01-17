@@ -1,6 +1,7 @@
 <script lang="ts">
 	import contextual from "$lib/actions/contextual";
 	import type { IShortcut } from "$lib/stores/shortcuts";
+	import { createEventDispatcher } from "svelte";
 
 	// TODO: Add sub-menu functionality
 
@@ -12,6 +13,7 @@
 	export let additionalShortcuts: IShortcut[] = [];
 
 	let menu: HTMLUListElement;
+	let dispatch = createEventDispatcher();
 
 	let shortcuts: IShortcut[] = [
 		{
@@ -19,6 +21,7 @@
 			key: [" ", "Enter"],
 			callback: (event) => {
 				event.target.click();
+				dispatch("select", event.target);
 			},
 		},
 		{
@@ -35,6 +38,8 @@
 				} else {
 					items[currIndex + 1].focus();
 				}
+
+				dispatch("next");
 			},
 		},
 		{
@@ -51,6 +56,8 @@
 				} else {
 					items[currIndex - 1].focus();
 				}
+
+				dispatch("previous");
 			},
 		},
 		{
@@ -60,6 +67,7 @@
 			callback: () => {
 				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
 				items[0].focus();
+				dispatch("first");
 			},
 		},
 		{
@@ -69,6 +77,7 @@
 			callback: () => {
 				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
 				items[items.length - 1].focus();
+				dispatch("last");
 			},
 		},
 	];
