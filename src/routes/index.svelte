@@ -1,58 +1,111 @@
 <script>
-	import { clickoutside, keycombo } from "$lib/actions";
-
-	import { Alert, Menubar, MenuItem } from "$lib/components";
 	import Button from "$site/components/button.svelte";
+	import IconBook from "~icons/la/book";
+	import IconArrowRight from "~icons/la/arrow-right";
 
-	const konamiCode = [
-		"ArrowUp",
-		"ArrowUp",
-		"ArrowDown",
-		"ArrowDown",
-		"ArrowLeft",
-		"ArrowRight",
-		"ArrowLeft",
-		"ArrowRight",
-		"b",
-		"a",
+	let headerImages = [
+		"accordion",
+		"carousel",
+		"accordion",
+		"modal",
+		"radio-buttons",
+		"accordion",
+		"carousel",
+		"modal",
+		"radio-buttons",
+		"accordion",
+		"carousel",
+		"accordion",
+		"modal",
+		"radio-buttons",
+		"accordion",
+		"carousel",
+		"modal",
+		"radio-buttons",
 	];
-
-	let alertVisible = false;
 </script>
 
-<svelte:body use:keycombo={{ sequence: konamiCode }} on:keycombo={() => alert("Konami code!")} />
-
-<div class="container">
-	<h1>Svaria Demo</h1>
-
-	<p>Press <kbd>/</kbd> for contextual shortcuts</p>
-
-	<h2>Components</h2>
-
-	<h3>Alert</h3>
-	<Button color="rose" on:click={() => (alertVisible = !alertVisible)}>Toggle alert</Button>
-	{#if alertVisible}
-		<Alert let:props>
-			<h2 use:clickoutside on:clickoutside={(e) => console.log(e.detail)} {...props}>
-				Hej, hello, ciao, こんにちは, 안녕
-			</h2>
-		</Alert>
-	{/if}
-
-	<h3>Menubar + MenuItem</h3>
-	<Menubar id="main-nav" label="Main Navigation">
-		<MenuItem let:props>
-			<Button {...props} color="lavendar" on:click={() => alert("Hello")}>Say Hello</Button>
-		</MenuItem>
-		<MenuItem let:props>
-			<Button {...props} color="apricot" on:click={() => alert("Hola")}>Say Hola</Button>
-		</MenuItem>
-		<MenuItem let:props>
-			<Button {...props} color="rose" on:click={() => alert("안녕")}>Say 안녕</Button>
-		</MenuItem>
-	</Menubar>
-</div>
+<header>
+	<div class="container">
+		<h1>The accessibility toolkit for your Svelte apps</h1>
+		<p class="text__h4">
+			A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write
+			accessible apps that can scale to any design.
+		</p>
+		<div class="buttons">
+			<Button color="lavendar">
+				<IconBook />
+				Documentation
+			</Button>
+			<Button iconPosition="right" color="rose">
+				Get started
+				<IconArrowRight />
+			</Button>
+		</div>
+	</div>
+	<div class="decoration-grid">
+		{#each headerImages as image}
+			<div>
+				<img src="/img/header/{image}.svg" alt="" />
+			</div>
+		{/each}
+	</div>
+</header>
 
 <style lang="scss">
 	@import "variables";
+
+	$header-height: 44rem;
+
+	header {
+		display: flex;
+		align-items: center;
+		height: $header-height;
+		position: relative;
+		overflow: hidden;
+		border-bottom: 2px solid $navy;
+
+		h1 {
+			max-width: 48.5rem;
+		}
+
+		p {
+			max-width: 37.5rem;
+		}
+
+		.buttons {
+			display: flex;
+			margin-top: 3.25rem;
+			& > :global(*):not(:last-child) {
+				margin-right: 1.5rem;
+			}
+		}
+
+		.decoration-grid {
+			position: absolute;
+			top: 0;
+			left: calc(50% + 1920px / 2);
+			transform: translateX(-50%);
+			display: grid;
+			height: 100%;
+			width: $header-height * 2;
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			gap: 2px;
+
+			> div {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 1.5rem;
+				box-shadow: 0 0 0 2px $navy;
+				border-collapse: collapse;
+				height: 100%;
+
+				img {
+					user-select: none;
+					-webkit-user-drag: none;
+				}
+			}
+		}
+	}
 </style>

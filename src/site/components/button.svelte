@@ -2,6 +2,7 @@
 	import { spring } from "svelte/motion";
 
 	export let color: "lavendar" | "tan" | "apricot" | "rose";
+	export let iconPosition: "left" | "right" = "left";
 
 	let top = spring(0, {
 		damping: 0.5,
@@ -13,7 +14,7 @@
 
 	function handleMouseMove(
 		e: MouseEvent & {
-			currentTarget: EventTarget & HTMLButtonElement;
+			currentTarget: EventTarget & HTMLElement;
 		}
 	) {
 		const rect = e.currentTarget.getBoundingClientRect();
@@ -30,16 +31,30 @@
 	}
 </script>
 
-<button
-	on:click
-	on:mousemove={handleMouseMove}
-	on:mouseleave={reset}
-	class="offset offset--{color}"
-	style="--left: {$left}px; --top: {$top}px"
-	{...$$restProps}
->
-	<slot />
-</button>
+{#if $$props.href}
+	<a
+		href={$$props.href}
+		on:click
+		on:mousemove={handleMouseMove}
+		on:mouseleave={reset}
+		class="offset offset--{color} icon-{iconPosition}"
+		style="--left: {$left}px; --top: {$top}px"
+		{...$$restProps}
+	>
+		<slot />
+	</a>
+{:else}
+	<button
+		on:click
+		on:mousemove={handleMouseMove}
+		on:mouseleave={reset}
+		class="offset offset--{color} icon-{iconPosition}"
+		style="--left: {$left}px; --top: {$top}px"
+		{...$$restProps}
+	>
+		<slot />
+	</button>
+{/if}
 
 <style lang="scss">
 	@import "variables";
@@ -75,6 +90,18 @@
 		&:active::after,
 		&:focus-visible {
 			transform: scale(95%);
+		}
+
+		> :global(svg) {
+			width: 1.5em;
+			height: 1.5em;
+			margin-left: -0.5rem;
+			margin-right: 0.75rem;
+		}
+
+		&.icon-right > :global(svg) {
+			margin-right: -0.5rem;
+			margin-left: 0.75rem;
 		}
 	}
 </style>

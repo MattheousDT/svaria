@@ -7,7 +7,7 @@
 
 <nav style:height>
 	<Menubar id="main-nav" label="Main Navigation">
-		<MenuItem let:props>
+		<!-- <MenuItem let:props>
 			<Button color="lavendar" on:click={() => console.log("bruh")} {...props}>Test</Button>
 		</MenuItem>
 		<MenuItem let:props>
@@ -15,7 +15,7 @@
 		</MenuItem>
 		<MenuItem let:props>
 			<Button color="rose" on:click={() => console.log("bruh3")} {...props}>Test</Button>
-		</MenuItem>
+		</MenuItem> -->
 	</Menubar>
 </nav>
 

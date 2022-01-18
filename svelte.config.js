@@ -1,6 +1,7 @@
 import adapter from "@sveltejs/adapter-vercel";
-import preprocess from "svelte-preprocess";
 import path from "path";
+import preprocess from "svelte-preprocess";
+import Icons from "unplugin-icons/vite";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,6 +14,11 @@ const config = {
 		adapter: adapter(),
 		target: "#svelte",
 		vite: {
+			plugins: [
+				Icons({
+					compiler: "svelte",
+				}),
+			],
 			resolve: {
 				alias: {
 					$site: path.resolve("./src/site"),

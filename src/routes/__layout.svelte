@@ -20,11 +20,11 @@
 <svelte:body use:shortcuts={globalShortcuts} />
 
 <div id="app">
-	<!-- <Nav bind:height={navHeight} /> -->
-	<div>
+	<Nav bind:height={navHeight} />
+	<main style:padding-top={navHeight}>
 		<slot />
-	</div>
-
+	</main>
+	<footer>Made with ❤ in Belfast</footer>
 	<Shortcuts />
 </div>
 
@@ -32,8 +32,21 @@
 	@import "global";
 	@import "variables";
 
-	#svelte {
+	#app {
 		background-color: $sand;
 		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1;
+	}
+
+	footer {
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
