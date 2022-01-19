@@ -1,11 +1,3 @@
-<script lang="ts">
-	let props: svelte.JSX.HTMLProps<HTMLElement> = {
-		role: "alert",
-		"aria-live": "assertive",
-		"aria-atomic": true,
-	};
-</script>
-
 <!--
 	@component
 	Ultra simple alert component that alerts a screenreader of the contents.
@@ -21,5 +13,12 @@
 	{/if}
 	```
 -->
+<script lang="ts">
+	let props: svelte.JSX.HTMLProps<HTMLElement> = {
+		role: "alert",
+		"aria-live": "assertive",
+		"aria-atomic": true,
+	};
+</script>
 
 <slot {props} />

@@ -1,11 +1,3 @@
-<script lang="ts">
-	/** Props that are required to be spread onto the child element of this component */
-	let props: svelte.JSX.HTMLProps<HTMLElement> = {
-		role: "menuitem",
-		tabindex: 0,
-	};
-</script>
-
 <!--
 	@component
 	To be used as children to `<Menubar />` to wrap any interactable elements in your menu
@@ -28,6 +20,13 @@
 	</Menubar>
 	```
 -->
+<script lang="ts">
+	/** Props that are required to be spread onto the child element of this component */
+	let props: svelte.JSX.HTMLProps<HTMLElement> = {
+		role: "menuitem",
+		tabindex: 0,
+	};
+</script>
 
 <li role="none" class="svaria__menuitem" {...$$restProps}>
 	<slot {props} />

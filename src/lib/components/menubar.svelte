@@ -1,3 +1,25 @@
+<!--
+	@component
+	Top level menubar component with keyboard shortcut handling pre-applied.
+	
+	To be accompanied with `<MenuItem />` to wrap any interactable elements in your menu
+	
+	**Example usage:**
+	```svelte
+	<Menubar id="main-nav" label="Main Navigation">
+		<MenuItem let:props>
+			<button on:click={() => alert("Hello")} {...props}>
+				Example usage with button
+			</button>
+		</MenuItem>
+		<MenuItem let:props>
+			<a href="/hello" {...props}>
+				Example usage with link
+			</a>
+		</MenuItem>
+	</Menubar>
+	```
+-->
 <script lang="ts">
 	import contextual from "$lib/actions/contextual";
 	import type { IShortcut } from "$lib/stores/shortcuts";
@@ -82,29 +104,6 @@
 		},
 	];
 </script>
-
-<!--
-	@component
-	Top level menubar component with keyboard shortcut handling pre-applied.
-	
-	To be accompanied with `<MenuItem />` to wrap any interactable elements in your menu
-	
-	**Example usage:**
-	```svelte
-	<Menubar id="main-nav" label="Main Navigation">
-		<MenuItem let:props>
-			<button on:click={() => alert("Hello")} {...props}>
-				Example usage with button
-			</button>
-		</MenuItem>
-		<MenuItem let:props>
-			<a href="/hello" {...props}>
-				Example usage with link
-			</a>
-		</MenuItem>
-	</Menubar>
-	```
--->
 
 <ul
 	{...$$restProps}

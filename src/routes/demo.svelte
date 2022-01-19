@@ -2,7 +2,8 @@
 	import { clickoutside, keycombo } from "$lib/actions";
 
 	import { Alert, Menubar, MenuItem } from "$lib/components";
-	import Button from "$site/components/button.svelte";
+	import WindowSplitterExample from "$site/components/examples/window_splitter_example.svelte";
+	import ParallaxButton from "$site/components/parallax_button.svelte";
 
 	const konamiCode = [
 		"ArrowUp",
@@ -30,7 +31,7 @@
 	<h2>Components</h2>
 
 	<h3>Alert</h3>
-	<Button color="rose" on:click={() => (alertVisible = !alertVisible)}>Toggle alert</Button>
+	<ParallaxButton color="rose" on:click={() => (alertVisible = !alertVisible)}>Toggle alert</ParallaxButton>
 	{#if alertVisible}
 		<Alert let:props>
 			<h2 use:clickoutside on:clickoutside={(e) => console.log(e.detail)} {...props}>
@@ -42,15 +43,18 @@
 	<h3>Menubar + MenuItem</h3>
 	<Menubar id="main-nav" label="Main Navigation">
 		<MenuItem let:props>
-			<Button {...props} color="lavendar" on:click={() => alert("Hello")}>Say Hello</Button>
+			<ParallaxButton {...props} color="lavendar" on:click={() => alert("Hello")}>Say Hello</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
-			<Button {...props} color="apricot" on:click={() => alert("Hola")}>Say Hola</Button>
+			<ParallaxButton {...props} color="apricot" on:click={() => alert("Hola")}>Say Hola</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
-			<Button {...props} color="rose" on:click={() => alert("안녕")}>Say 안녕</Button>
+			<ParallaxButton {...props} color="rose" on:click={() => alert("안녕")}>Say 안녕</ParallaxButton>
 		</MenuItem>
 	</Menubar>
+
+	<h3>Window splitter</h3>
+	<WindowSplitterExample />
 </div>
 
 <style lang="scss">

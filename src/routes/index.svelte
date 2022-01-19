@@ -1,16 +1,18 @@
 <script>
-	import Button from "$site/components/button.svelte";
+	import ParallaxButton from "$site/components/parallax_button.svelte";
 	import IconBook from "~icons/la/book";
 	import IconArrowRight from "~icons/la/arrow-right";
+	import { LINKS } from "$site/util/constants";
+	import WindowSplitter from "$lib/components/window_splitter.svelte";
 
 	let headerImages = [
 		"accordion",
 		"carousel",
-		"accordion",
 		"modal",
 		"radio-buttons",
 		"accordion",
 		"carousel",
+		"accordion",
 		"modal",
 		"radio-buttons",
 		"accordion",
@@ -33,14 +35,14 @@
 			accessible apps that can scale to any design.
 		</p>
 		<div class="buttons">
-			<Button color="lavendar">
+			<ParallaxButton href={LINKS.documentation} color="lavendar">
 				<IconBook />
 				Documentation
-			</Button>
-			<Button iconPosition="right" color="rose">
+			</ParallaxButton>
+			<ParallaxButton href={LINKS.getStarted} iconPosition="right" color="rose">
 				Get started
 				<IconArrowRight />
-			</Button>
+			</ParallaxButton>
 		</div>
 	</div>
 	<div class="decoration-grid">
@@ -89,7 +91,8 @@
 			display: grid;
 			height: 100%;
 			width: $header-height * 2;
-			grid-template-columns: repeat(6, minmax(0, 1fr));
+			grid-template-rows: repeat(3, minmax(0, 1fr));
+			grid-auto-flow: column;
 			gap: 2px;
 
 			> div {

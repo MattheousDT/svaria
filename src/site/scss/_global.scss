@@ -49,7 +49,7 @@ $accents: (
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		transition: left 250ms ease, top 250ms ease, background-color 250ms ease;
+		transition: left 150ms ease, top 150ms ease, background-color 150ms ease;
 	}
 
 	&--hover:hover::before {
