@@ -8,8 +8,8 @@
 	export let labelElId: string = null;
 	export let direction: "horizontal" | "vertical" = "vertical";
 	export let value: number;
-	export let minValue: number;
-	export let maxValue: number;
+	export let minValue: number = 0;
+	export let maxValue: number = 100;
 	export let containerEl: HTMLElement;
 
 	let splitterEl: HTMLSpanElement;
@@ -17,15 +17,20 @@
 	$: if (!label && !labelElId)
 		throw Error("A label or label element id reference must be passed to the WindowSplitter component");
 
+	$: if (value > maxValue) value = maxValue;
+	$: if (value < minValue) value = minValue;
+
 	function handleMousemove(e: MouseEvent) {
 		if (!(e.buttons & 1)) return; // mouse not down
 
 		const { left, top, width, height } = containerEl.getBoundingClientRect();
 
 		if (direction === "vertical") {
-			value = ((e.clientX - splitterEl.getBoundingClientRect().width / 2 - left) / width) * maxValue;
+			const percent = ((e.clientX - splitterEl.getBoundingClientRect().width / 2 - left) / width) * 100;
+			value = Math.min(Math.max(percent, minValue), maxValue);
 		} else {
-			value = ((e.clientY - splitterEl.getBoundingClientRect().height / 2 - top) / height) * maxValue;
+			const percent = ((e.clientY - splitterEl.getBoundingClientRect().height / 2 - top) / height) * 100;
+			value = Math.min(Math.max(percent, minValue), maxValue);
 		}
 	}
 
@@ -51,7 +56,7 @@
 						description: "Moves a vertical splitter to the left.",
 						key: "ArrowLeft",
 						callback: () => {
-							value--;
+							if (value > minValue) value--;
 							dispatch("move_left");
 						},
 					},
@@ -60,7 +65,7 @@
 						description: "Moves a vertical splitter to the right.",
 						key: "ArrowRight",
 						callback: () => {
-							value++;
+							if (value < maxValue) value++;
 							dispatch("move_right");
 						},
 					},
@@ -71,7 +76,7 @@
 						description: "Moves a horizontal splitter up.",
 						key: "ArrowUp",
 						callback: () => {
-							value--;
+							if (value > minValue) value--;
 							dispatch("move_up");
 						},
 					},
@@ -80,7 +85,7 @@
 						description: "Moves a horizontal splitter down.",
 						key: "ArrowDown",
 						callback: () => {
-							value++;
+							if (value < maxValue) value++;
 							dispatch("move_down");
 						},
 					},

@@ -1,48 +1,46 @@
 <script lang="ts">
 	import WindowSplitter from "$lib/components/window_splitter.svelte";
 
-	let value = 33;
+	let value = 30;
+	let minValue = 20;
+	let maxValue = 40;
 	let container: HTMLDivElement;
 </script>
 
+<table>
+	<td>
+		<label>
+			Current ({value.toFixed(0)}%)
+			<input type="range" min={minValue} max={maxValue} bind:value />
+		</label>
+	</td>
+	<td>
+		<label>
+			Min value ({minValue.toFixed(0)}%)
+			<input type="range" min={0} max={100} bind:value={minValue} />
+		</label>
+	</td>
+	<td>
+		<label>
+			max value ({maxValue.toFixed(0)}%)
+			<input type="range" min={0} max={100} bind:value={maxValue} />
+		</label>
+	</td>
+</table>
+
 <div bind:this={container} style:grid-template-columns="{value}% 2rem auto">
-	<aside>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel aliquam arcu. Sed congue vitae turpis quis
-			fermentum. Sed vel condimentum justo. Quisque sit amet sollicitudin elit, porta scelerisque nisi. Etiam ultricies
-			bibendum consectetur. Nam eu sollicitudin massa. Sed vel dui sit amet lectus porttitor facilisis. Vestibulum eget
-			nunc massa. Nulla tempus cursus diam ac sodales. Sed tortor dui, condimentum vitae euismod eget, aliquet vitae
-			elit. Curabitur facilisis nunc et leo commodo suscipit. Aenean condimentum, diam vel pharetra dictum, magna eros
-			lacinia justo, quis ultrices libero lectus at felis. Duis pellentesque urna sed tincidunt blandit.
-		</p>
-	</aside>
+	<aside>Sidebar</aside>
 	<WindowSplitter
 		primaryPaneElId="primary-pane"
 		label="Demo splitter"
 		bind:value
-		minValue={0}
-		maxValue={100}
+		{minValue}
+		{maxValue}
 		containerEl={container}
 	>
 		<span class="line" />
 	</WindowSplitter>
-	<main id="primary-pane">
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel aliquam arcu. Sed congue vitae turpis quis
-			fermentum. Sed vel condimentum justo. Quisque sit amet sollicitudin elit, porta scelerisque nisi. Etiam ultricies
-			bibendum consectetur. Nam eu sollicitudin massa. Sed vel dui sit amet lectus porttitor facilisis. Vestibulum eget
-			nunc massa. Nulla tempus cursus diam ac sodales. Sed tortor dui, condimentum vitae euismod eget, aliquet vitae
-			elit. Curabitur facilisis nunc et leo commodo suscipit. Aenean condimentum, diam vel pharetra dictum, magna eros
-			lacinia justo, quis ultrices libero lectus at felis. Duis pellentesque urna sed tincidunt blandit. In feugiat ex
-			in sapien auctor, vitae egestas eros lobortis. Praesent imperdiet magna neque, sed lobortis nisi gravida sed.
-			Integer sit amet urna ligula. Nulla ut quam vulputate, ultrices nulla sed, volutpat sem. Nulla nec ornare nulla.
-			Donec vehicula ac diam ut molestie. Vestibulum augue nisl, cursus vitae ligula ac, luctus elementum augue. Fusce
-			cursus, justo vitae laoreet sollicitudin, tortor elit condimentum tortor, ac laoreet diam ipsum luctus felis.
-			Donec vel tincidunt mi, vel porttitor eros. Maecenas condimentum imperdiet risus, ac iaculis nibh consequat ac.
-			Fusce quam velit, pellentesque gravida semper sed, facilisis ac massa. Ut tristique congue tortor ac dignissim.
-			Integer nec mauris quis velit sodales dapibus.
-		</p>
-	</main>
+	<main id="primary-pane">Main panel</main>
 </div>
 
 <style lang="scss">
@@ -51,6 +49,10 @@
 	div {
 		display: grid;
 		width: 100%;
+		height: 400px;
+		overflow: hidden;
+		margin-top: 1rem;
+		border: 2px solid $navy;
 
 		:global(.svaria__window-splitter) {
 			display: flex;
@@ -61,6 +63,10 @@
 		}
 	}
 
+	input {
+		display: block;
+	}
+
 	span {
 		display: block;
 		height: 100%;
@@ -68,10 +74,18 @@
 		background: $navy;
 	}
 
+	aside {
+		background: $lavendar;
+	}
+	main {
+		background: $rose;
+	}
+
 	main,
 	aside {
-		&:focus {
-			background: red;
-		}
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.5rem;
 	}
 </style>
