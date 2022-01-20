@@ -1,9 +1,9 @@
 <script lang="ts">
 	import WindowSplitter from "$lib/components/window_splitter.svelte";
 
-	let value = 30;
+	let value = 50;
 	let minValue = 20;
-	let maxValue = 40;
+	let maxValue = 80;
 	let container: HTMLDivElement;
 </script>
 
@@ -29,9 +29,9 @@
 </table>
 
 <div bind:this={container} style:grid-template-columns="{value}% 2rem auto">
-	<aside>Sidebar</aside>
+	<aside id="primary-pane">Primary pane</aside>
 	<WindowSplitter
-		primaryPaneElId="primary-pane"
+		primaryPaneId="primary-pane"
 		label="Demo splitter"
 		bind:value
 		{minValue}
@@ -40,7 +40,7 @@
 	>
 		<span class="line" />
 	</WindowSplitter>
-	<main id="primary-pane">Main panel</main>
+	<article id="secondary-pane">Secondary pane</article>
 </div>
 
 <style lang="scss">
@@ -77,15 +77,16 @@
 	aside {
 		background: $lavendar;
 	}
-	main {
+	article {
 		background: $rose;
 	}
 
-	main,
+	article,
 	aside {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-size: 1.5rem;
+		overflow: hidden;
 	}
 </style>

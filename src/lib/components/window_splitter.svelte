@@ -3,9 +3,9 @@
 	import type { IShortcut } from "$lib/stores/shortcuts";
 	import { createEventDispatcher } from "svelte";
 
-	export let primaryPaneElId: string;
+	export let primaryPaneId: string;
 	export let label: string = null;
-	export let labelElId: string = null;
+	export let labelId: string = null;
 	export let direction: "horizontal" | "vertical" = "vertical";
 	export let value: number;
 	export let minValue: number = 0;
@@ -13,8 +13,9 @@
 	export let containerEl: HTMLElement;
 
 	let splitterEl: HTMLSpanElement;
+	let dispatch = createEventDispatcher();
 
-	$: if (!label && !labelElId)
+	$: if (!label && !labelId)
 		throw Error("A label or label element id reference must be passed to the WindowSplitter component");
 
 	$: if (value > maxValue) value = maxValue;
@@ -34,8 +35,9 @@
 		}
 	}
 
-	function handleMousedown(e: MouseEvent) {
+	function handleMousedown(e: MouseEvent & { currentTarget: EventTarget & HTMLSpanElement }) {
 		e.preventDefault();
+		e.currentTarget.focus();
 
 		function handleMouseup() {
 			document.removeEventListener("mouseup", handleMouseup);
@@ -46,14 +48,12 @@
 		document.addEventListener("mousemove", handleMousemove);
 	}
 
-	let dispatch = createEventDispatcher();
-
 	let shortcuts: IShortcut[] = [
 		...(direction === "vertical"
 			? [
 					{
 						name: "Move left",
-						description: "Moves a vertical splitter to the left.",
+						description: "Moves the vertical splitter to the left.",
 						key: "ArrowLeft",
 						callback: () => {
 							if (value > minValue) value--;
@@ -62,7 +62,7 @@
 					},
 					{
 						name: "Move right",
-						description: "Moves a vertical splitter to the right.",
+						description: "Moves the vertical splitter to the right.",
 						key: "ArrowRight",
 						callback: () => {
 							if (value < maxValue) value++;
@@ -73,7 +73,7 @@
 			: [
 					{
 						name: "Move up",
-						description: "Moves a horizontal splitter up.",
+						description: "Moves the horizontal splitter up.",
 						key: "ArrowUp",
 						callback: () => {
 							if (value > minValue) value--;
@@ -82,7 +82,7 @@
 					},
 					{
 						name: "Move down",
-						description: "Moves a horizontal splitter down.",
+						description: "Moves the horizontal splitter down.",
 						key: "ArrowDown",
 						callback: () => {
 							if (value < maxValue) value++;
@@ -91,23 +91,21 @@
 					},
 			  ]),
 		{
-			name: "Maximize primary window",
-			description:
-				"Moves splitter to the position that gives the primary pane its smallest allowed size. This may completely collapse the primary pane.",
+			name: "Minimize primary window",
+			description: "Moves splitter to the position that gives the primary pane its smallest allowed size.",
 			key: "Home",
 			callback: () => {
 				value = minValue;
-				dispatch("maximize_primary");
+				dispatch("minimize");
 			},
 		},
 		{
-			name: "Minimize primary window",
-			description:
-				"Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.",
+			name: "Maximize primary window",
+			description: "Moves splitter to the position that gives the primary pane its largest allowed size.",
 			key: "End",
 			callback: () => {
 				value = maxValue;
-				dispatch("minimize_primary");
+				dispatch("maximize");
 			},
 		},
 		// ...(panes.length > 0
@@ -138,14 +136,14 @@
 
 <span
 	{...$$restProps}
-	use:contextual={{ id: primaryPaneElId, shortcuts }}
+	use:contextual={{ id: primaryPaneId, shortcuts }}
 	bind:this={splitterEl}
 	on:mousedown={handleMousedown}
 	class={["svaria__window-splitter", $$props.class].filter((x) => !!x).join(" ")}
 	role="separator"
-	aria-controls={primaryPaneElId}
+	aria-controls={primaryPaneId}
 	aria-label={label}
-	aria-labelledby={labelElId}
+	aria-labelledby={labelId}
 	aria-valuenow={value}
 	aria-valuemin={minValue}
 	aria-valuemax={maxValue}

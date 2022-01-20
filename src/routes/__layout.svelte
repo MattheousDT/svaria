@@ -19,20 +19,18 @@
 
 <svelte:body use:shortcuts={globalShortcuts} />
 
-<div id="app">
-	<Nav bind:height={navHeight} />
-	<main style:padding-top={navHeight}>
-		<slot />
-	</main>
-	<footer>Made with ❤ in Belfast</footer>
-	<Shortcuts />
-</div>
+<Nav bind:height={navHeight} />
+<main style:padding-top={navHeight}>
+	<slot />
+</main>
+<footer>Made with ❤ in Belfast</footer>
+<Shortcuts />
 
 <style lang="scss" global>
 	@import "global";
 	@import "variables";
 
-	#app {
+	#svelte {
 		background-color: $sand;
 		min-height: 100vh;
 		display: flex;
