@@ -1,10 +1,10 @@
 import type { IShortcut } from "$lib/stores/shortcuts";
-import { svariaShortcuts } from "$lib/stores/shortcuts";
+import { shortcuts } from "$lib/stores/shortcuts";
 
 /**
  * Register events to the shortcut handler whenever the focus is within the scope of the element
  *
- * **Example usage:**
+ * @example
  * ```svelte
  * <script>
  *   let videoShortcuts = [
@@ -33,17 +33,11 @@ const contextualShortcuts = (
 	options: { id: string; shortcuts: IShortcut[] }
 ): SvelteActionReturnType => {
 	function addShortcuts() {
-		svariaShortcuts.update((x) => ({
-			...x,
-			contextual: [...x.contextual, ...options.shortcuts.map((y) => ({ ...y, origin: options.id }))],
-		}));
+		shortcuts.contextual.add(options.shortcuts.map((y) => ({ ...y, origin: options.id })));
 	}
 
 	function removeShortcuts() {
-		svariaShortcuts.update((x) => ({
-			...x,
-			contextual: x.contextual.filter((y) => y.origin !== options.id),
-		}));
+		shortcuts.contextual.remove(options.id);
 	}
 
 	node.addEventListener("focusin", addShortcuts);

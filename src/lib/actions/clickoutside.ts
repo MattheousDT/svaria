@@ -1,7 +1,7 @@
 /**
  * Adds a click handler that only fires whenever the click is not the element passed in.
  *
- * **Example usage:**
+ * @example
  * ```svelte
  * <script>
  *   let modalOpen = true;

@@ -4,7 +4,7 @@
 	
 	To be accompanied with `<MenuItem />` to wrap any interactable elements in your menu
 	
-	**Example usage:**
+	@example
 	```svelte
 	<Menubar id="main-nav" label="Main Navigation">
 		<MenuItem let:props>

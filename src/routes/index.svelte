@@ -6,24 +6,24 @@
 	import WindowSplitter from "$lib/components/window_splitter.svelte";
 
 	let headerImages = [
-		"accordion",
-		"carousel",
-		"modal",
-		"radio-buttons",
-		"accordion",
-		"carousel",
-		"accordion",
-		"modal",
-		"radio-buttons",
-		"accordion",
-		"carousel",
-		"accordion",
-		"modal",
-		"radio-buttons",
-		"accordion",
-		"carousel",
-		"modal",
-		"radio-buttons",
+		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
+		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
+		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
+		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
+		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
+		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
+		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
+		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
+		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
+		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
+		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
+		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
+		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
+		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
+		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
 	];
 </script>
 
@@ -46,10 +46,11 @@
 		</div>
 	</div>
 	<div class="decoration-grid">
-		{#each headerImages as image}
-			<div>
+		{#each headerImages as { title, href, image }}
+			<a {href}>
 				<img src="/img/header/{image}.svg" alt="" />
-			</div>
+				<p>{title}</p>
+			</a>
 		{/each}
 	</div>
 </header>
@@ -95,7 +96,8 @@
 			grid-auto-flow: column;
 			gap: 2px;
 
-			> div {
+			> a {
+				position: relative;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -103,6 +105,32 @@
 				box-shadow: 0 0 0 2px $navy;
 				border-collapse: collapse;
 				height: 100%;
+				transition: background-color 150ms ease;
+
+				&:hover,
+				&:focus {
+					background-color: darken($sand, 5);
+					outline: none;
+
+					p {
+						opacity: 1;
+						transform: translateY(0);
+						transition: transform 150ms cubic-bezier(0, 0, 0.27, 2.54), opacity 150ms ease;
+					}
+				}
+
+				p {
+					position: absolute;
+					color: $navy;
+					font-family: $sans-primary;
+					font-weight: 500;
+					bottom: 0.5rem;
+					opacity: 0;
+					width: 100%;
+					text-align: center;
+					transform: translateY(0.5rem);
+					transition: transform 150ms ease, opacity 150ms ease;
+				}
 
 				img {
 					user-select: none;

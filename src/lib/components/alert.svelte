@@ -2,7 +2,7 @@
 	@component
 	Ultra simple alert component that alerts a screenreader of the contents.
 	
-	**Example usage:**
+	@example
 	```svelte
 	{#if visible}
 		<Alert let:props>

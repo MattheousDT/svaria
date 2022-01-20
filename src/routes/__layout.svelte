@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { shortcuts } from "$lib/actions";
+	import { shortcut } from "$lib/actions";
 	import type { IShortcut } from "$lib/stores/shortcuts";
 	import Nav from "$site/components/nav.svelte";
 	import Shortcuts from "$site/components/shortcuts.svelte";
@@ -17,7 +17,7 @@
 	];
 </script>
 
-<svelte:body use:shortcuts={globalShortcuts} />
+<svelte:body use:shortcut={globalShortcuts} />
 
 <Nav bind:height={navHeight} />
 <main style:padding-top={navHeight}>

@@ -12,7 +12,7 @@ const getInitialMotionPreference = () => {
  *
  * This can be used to turn off certain animations that could be motion-sick inducing for those who need it
  *
- * **Example usage:**
+ * @example
  * ```svelte
  * <div transition:fly={{ y: $prefersReducedMotion ? 0 : 20 }}>
  *   <!-- This div will only fade out now instead of flying for users who prefer reduced motion -->

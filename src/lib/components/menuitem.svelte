@@ -4,7 +4,7 @@
 
 	Important that you use the `let:props` and spread it on any children elements in order to gain the accessibility
 	
-	**Example usage:**
+	@example
 	```svelte
 	<Menubar id="main-nav" label="Main Navigation">
 		<MenuItem let:props>

@@ -6,7 +6,7 @@ interface IKeycomboOptions {
 /**
  * Action to run a function after a sequence of keys has been entered in the correct order
  *
- * **Example usage:**
+ * @example
  * ```svelte
  * <script>
  *   const konamiCode = [

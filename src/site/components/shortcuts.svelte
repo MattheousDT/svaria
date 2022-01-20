@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IShortcutStoreItem, svariaShortcuts } from "$lib/stores/shortcuts";
+	import { IShortcutStoreItem, shortcuts } from "$lib/stores/shortcuts";
 	import { shortcutsVisibility } from "$site/stores/prefs";
 	import { backOut } from "svelte/easing";
 	import { fly } from "svelte/transition";
@@ -37,7 +37,7 @@
 		].join(" + ");
 	};
 
-	$: shortcuts = Object.values($svariaShortcuts).flat();
+	$: allShortcuts = Object.values($shortcuts).flat();
 </script>
 
 {#if $shortcutsVisibility}
@@ -47,14 +47,14 @@
 				<h2 class="text__h3">Keyboard Shortcuts</h2>
 				<hr />
 				<div class="shortcuts__list">
-					{#each shortcuts as shortcut}
+					{#each allShortcuts as s}
 						<div>
 							<h3 class="text__h5">
-								<kbd>{formatShortcut(shortcut)}</kbd>
-								{shortcut.name}
+								<kbd>{formatShortcut(s)}</kbd>
+								{s.name}
 							</h3>
-							{#if shortcut.description}
-								<p>{shortcut.description}</p>
+							{#if s.description}
+								<p>{s.description}</p>
 							{/if}
 						</div>
 					{/each}

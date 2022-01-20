@@ -1,11 +1,10 @@
-import { svariaShortcuts } from "$lib/stores/shortcuts";
-import type { IShortcut } from "$lib/stores/shortcuts";
+import { IShortcut, shortcuts } from "$lib/stores/shortcuts";
 import { get } from "svelte/store";
 
 /**
  * Global + contextual keyboard shortcut handler. This action should ideally be used at the highest level, e.g. `<svelte:body>`
  *
- * **Example usage:**
+ * @example
  * ```svelte
  * <script>
  *   let initialShortcuts = [
@@ -18,18 +17,19 @@ import { get } from "svelte/store";
  *   ];
  * </script>
  *
- * <svelte:body use:shortcuts={initialShortcuts} />
+ * <svelte:body use:shortcut={initialShortcuts} />
  * ```
  *
- * @param shortcuts An optional list of global shortcuts to add when initialised. This value can be updated at a later stage if required.
+ * @param globalShortcuts An optional list of global shortcuts to add when initialised.
+ * This value can be updated at a later stage if required or programatically updated using the shortcuts store.
  */
-const shortcuts = (node: HTMLElement, shortcuts?: IShortcut[]): SvelteActionReturnType => {
+const shortcut = (node: HTMLElement, globalShortcuts?: IShortcut[]): SvelteActionReturnType => {
 	function handleKeyDown(
 		e: KeyboardEvent & {
 			target: EventTarget & HTMLElement;
 		}
 	) {
-		const store = get(svariaShortcuts);
+		const store = get(shortcuts);
 
 		const match = Object.values(store)
 			.flat()
@@ -51,17 +51,11 @@ const shortcuts = (node: HTMLElement, shortcuts?: IShortcut[]): SvelteActionRetu
 	node.addEventListener("keydown", handleKeyDown);
 
 	function addShortcuts() {
-		svariaShortcuts.update((x) => ({
-			...x,
-			global: [...x.global, ...shortcuts.map((y) => ({ ...y, origin: node.id || node.localName }))],
-		}));
+		shortcuts.global.add(globalShortcuts.map((y) => ({ ...y, origin: node.id || node.localName })));
 	}
 
 	function removeShortcuts() {
-		svariaShortcuts.update((x) => ({
-			...x,
-			global: x.global.filter((y) => y.origin !== (node.id || node.localName)),
-		}));
+		shortcuts.global.remove(node.id || node.localName);
 	}
 
 	addShortcuts();
@@ -70,12 +64,12 @@ const shortcuts = (node: HTMLElement, shortcuts?: IShortcut[]): SvelteActionRetu
 		update: (newShortcuts: IShortcut[]) => {
 			removeShortcuts();
 			if (newShortcuts) {
-				shortcuts = newShortcuts;
+				globalShortcuts = newShortcuts;
 				addShortcuts();
 			}
 		},
 		destroy: () => {
-			if (shortcuts) {
+			if (globalShortcuts) {
 				removeShortcuts();
 			}
 			node.removeEventListener("keydown", handleKeyDown);
@@ -83,4 +77,4 @@ const shortcuts = (node: HTMLElement, shortcuts?: IShortcut[]): SvelteActionRetu
 	};
 };
 
-export default shortcuts;
+export default shortcut;
