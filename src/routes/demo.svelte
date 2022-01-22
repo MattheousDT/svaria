@@ -20,7 +20,7 @@
 	let alertVisible = false;
 </script>
 
-<svelte:body use:keycombo={{ sequence: konamiCode }} on:keycombo={() => alert("Konami code!")} />
+<svelte:body use:keycombo={{ sequence: konamiCode, callback: () => alert("Konami code!") }} />
 
 <div class="container">
 	<h1>Svaria Demo</h1>
@@ -33,9 +33,7 @@
 	<ParallaxButton color="rose" on:click={() => (alertVisible = !alertVisible)}>Toggle alert</ParallaxButton>
 	{#if alertVisible}
 		<Alert let:props>
-			<h2 use:clickoutside on:clickoutside={(e) => console.log(e.detail)} {...props}>
-				Hej, hello, ciao, こんにちは, 안녕
-			</h2>
+			<h2 use:clickoutside={(e) => console.log(e)} {...props}>Hej, hello, ciao, こんにちは, 안녕</h2>
 		</Alert>
 	{/if}
 
