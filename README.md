@@ -31,7 +31,7 @@ Here are some very basic examples of using Svaria.
 ### Actions
 ```svelte
 <script>
-  import { contextual } from "svaria/actions";
+  import { contextual } from "svaria";
 
   let videoShortcuts = [
     {
@@ -55,7 +55,7 @@ Here are some very basic examples of using Svaria.
 ### Components
 ```svelte
 <script>
-  import { Menubar, MenuItem } from "svaria/components";
+  import { Menubar, MenuItem } from "svaria";
 </script>
 
 <Menubar id="main-nav" label="Main Navigation">

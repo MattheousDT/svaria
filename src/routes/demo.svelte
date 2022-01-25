@@ -1,6 +1,5 @@
 <script>
-	import { clickoutside, keycombo } from "$lib/actions";
-	import { Alert, Menubar, MenuItem } from "$lib/components";
+	import { Alert, Menubar, MenuItem, clickoutside, keycombo } from "svaria";
 	import WindowSplitterExample from "$site/components/examples/window_splitter_example.svelte";
 	import ParallaxButton from "$site/components/parallax_button.svelte";
 

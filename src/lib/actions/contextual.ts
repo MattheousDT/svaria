@@ -1,5 +1,5 @@
-import type { IShortcut } from "$lib/stores/shortcuts";
-import { shortcuts } from "$lib/stores/shortcuts";
+import type { IShortcut } from "$lib/@types/shortcuts";
+import shortcuts from "$lib/stores/shortcuts";
 
 /**
  * Register events to the shortcut handler whenever the focus is within the scope of the element
@@ -33,7 +33,7 @@ const contextualShortcuts = (
 	options: { id: string; shortcuts: IShortcut[] }
 ): SvelteActionReturnType => {
 	function addShortcuts() {
-		shortcuts.contextual.add(options.shortcuts.map((y) => ({ ...y, origin: options.id })));
+		shortcuts.contextual.add(options.id, options.shortcuts);
 	}
 
 	function removeShortcuts() {

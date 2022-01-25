@@ -1,4 +1,5 @@
-import { IShortcut, shortcuts } from "$lib/stores/shortcuts";
+import type { IShortcut } from "$lib/@types/shortcuts";
+import shortcuts from "$lib/stores/shortcuts";
 import { get } from "svelte/store";
 
 /**
@@ -51,11 +52,11 @@ const shortcut = (node: HTMLElement, globalShortcuts?: IShortcut[]): SvelteActio
 	node.addEventListener("keydown", handleKeyDown);
 
 	function addShortcuts() {
-		shortcuts.global.add(globalShortcuts.map((y) => ({ ...y, origin: node.id || node.localName })));
+		shortcuts?.global?.add(node.id || node.localName, globalShortcuts);
 	}
 
 	function removeShortcuts() {
-		shortcuts.global.remove(node.id || node.localName);
+		shortcuts?.global?.remove(node.id || node.localName);
 	}
 
 	addShortcuts();

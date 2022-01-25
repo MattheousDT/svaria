@@ -1,9 +1,8 @@
 <script>
 	import ParallaxButton from "$site/components/parallax_button.svelte";
-	import IconBook from "~icons/la/book";
-	import IconArrowRight from "~icons/la/arrow-right";
 	import { LINKS } from "$site/util/constants";
-	import WindowSplitter from "$lib/components/window_splitter.svelte";
+	import IconArrowRight from "~icons/la/arrow-right";
+	import IconBook from "~icons/la/book";
 
 	let headerImages = [
 		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },

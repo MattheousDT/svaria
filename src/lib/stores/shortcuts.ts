@@ -1,28 +1,5 @@
+import type { IShortcut, IShortcutStore } from "$lib/@types/shortcuts";
 import { writable } from "svelte/store";
-
-export interface IShortcut {
-	key: string | string[];
-	ctrlKey?: boolean;
-	altKey?: boolean;
-	metaKey?: boolean;
-	shiftKey?: boolean;
-	name?: string;
-	description?: string;
-	callback: (
-		e: KeyboardEvent & {
-			target: EventTarget & HTMLElement;
-		}
-	) => void;
-}
-
-export interface IShortcutStoreItem extends IShortcut {
-	origin: string;
-}
-
-export interface IShortcutStore {
-	global: IShortcutStoreItem[];
-	contextual: IShortcutStoreItem[];
-}
 
 const createShortcuts = () => {
 	const { subscribe, set, update } = writable<IShortcutStore>({
@@ -32,10 +9,10 @@ const createShortcuts = () => {
 
 	return {
 		global: {
-			add: (shortcuts: IShortcutStoreItem[]) =>
+			add: (id: string, shortcuts: IShortcut[]) =>
 				update((x) => ({
 					...x,
-					global: [...x.global, ...shortcuts],
+					global: [...x.global, ...shortcuts.map((y) => ({ ...y, origin: id }))],
 				})),
 			remove: (origin: string) =>
 				update((x) => ({
@@ -45,15 +22,15 @@ const createShortcuts = () => {
 			removeAll: () => update((x) => ({ ...x, global: [] })),
 		},
 		contextual: {
-			add: (shortcuts: IShortcutStoreItem[]) =>
+			add: (id: string, shortcuts: IShortcut[]) =>
 				update((x) => ({
 					...x,
-					global: [...x.global, ...shortcuts],
+					contextual: [...x.contextual, ...shortcuts.map((y) => ({ ...y, origin: id }))],
 				})),
 			remove: (origin: string) =>
 				update((x) => ({
 					...x,
-					global: x.global.filter((y) => y.origin !== origin),
+					contextual: x.contextual.filter((y) => y.origin !== origin),
 				})),
 			removeAll: () => update((x) => ({ ...x, contextual: [] })),
 		},
@@ -63,4 +40,6 @@ const createShortcuts = () => {
 };
 
 /** All shortcuts currently available to the context */
-export const shortcuts = createShortcuts();
+const shortcuts = createShortcuts();
+
+export default shortcuts;

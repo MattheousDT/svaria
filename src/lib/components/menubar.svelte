@@ -22,7 +22,7 @@
 -->
 <script lang="ts">
 	import contextual from "$lib/actions/contextual";
-	import type { IShortcut } from "$lib/stores/shortcuts";
+	import type { IShortcut } from "$lib/@types/shortcuts";
 	import { createEventDispatcher } from "svelte";
 
 	// TODO: Add sub-menu functionality
@@ -113,7 +113,7 @@
 	class="svaria__menubar"
 	bind:this={menu}
 	use:contextual={{
-		id: "svaria-menubar",
+		id,
 		shortcuts: [...shortcuts, ...additionalShortcuts],
 	}}
 >

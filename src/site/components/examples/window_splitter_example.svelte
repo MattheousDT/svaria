@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WindowSplitter from "$lib/components/window_splitter.svelte";
+	import { WindowSplitter } from "svaria";
 
 	let value = 50;
 	let minValue = 20;

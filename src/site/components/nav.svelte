@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar, MenuItem } from "$lib/components";
+	import { Menubar, MenuItem } from "svaria";
 	import { LINKS } from "$site/util/constants";
 	import Button from "./button.svelte";
 

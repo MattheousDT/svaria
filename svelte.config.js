@@ -22,6 +22,7 @@ const config = {
 			resolve: {
 				alias: {
 					$site: path.resolve("./src/site"),
+					svaria: path.resolve("./src/lib"),
 				},
 			},
 		},

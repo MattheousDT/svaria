@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { contextual } from "$lib/actions";
-	import type { IShortcut } from "$lib/stores/shortcuts";
+	import type { IShortcut } from "$lib/@types/shortcuts";
+	import contextual from "$lib/actions/contextual";
 	import { createEventDispatcher } from "svelte";
 
 	export let primaryPaneId: string;

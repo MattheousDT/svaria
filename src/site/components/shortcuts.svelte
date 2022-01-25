@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { IShortcutStoreItem, shortcuts } from "$lib/stores/shortcuts";
 	import { shortcutsVisibility } from "$site/stores/prefs";
+	import type { IShortcutStoreItem } from "svaria";
+	import { shortcuts } from "svaria";
 	import { backOut } from "svelte/easing";
 	import { fly } from "svelte/transition";
 

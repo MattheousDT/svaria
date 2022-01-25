@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { shortcut } from "$lib/actions";
-	import type { IShortcut } from "$lib/stores/shortcuts";
+	import shortcut from "$lib/actions/shortcut";
+	import type { IShortcut } from "svaria";
 	import Nav from "$site/components/nav.svelte";
 	import Shortcuts from "$site/components/shortcuts.svelte";
 	import { shortcutsVisibility } from "$site/stores/prefs";
