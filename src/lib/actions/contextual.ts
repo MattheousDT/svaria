@@ -46,8 +46,6 @@ const contextualShortcuts = (
 	return {
 		update: (newOptions: { id: string; shortcuts: IShortcut[] }) => {
 			options = newOptions;
-			removeShortcuts();
-			addShortcuts();
 		},
 		destroy: () => {
 			node.removeEventListener("focusin", addShortcuts);

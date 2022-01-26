@@ -21,13 +21,16 @@
 	```
 -->
 <script lang="ts">
+	/** Required to be set to true for the first item in a menu in order for focus indexes to be setup correctly with SSR */
+	export let first = false;
+
 	/** Props that are required to be spread onto the child element of this component */
 	let props: svelte.JSX.HTMLProps<HTMLElement> = {
 		role: "menuitem",
-		tabindex: 0,
+		tabindex: first ? 0 : -1,
 	};
 </script>
 
-<li role="none" class="svaria__menuitem" {...$$restProps}>
+<li {...$$restProps} role="none" class:svaria__menuitem={true}>
 	<slot {props} />
 </li>

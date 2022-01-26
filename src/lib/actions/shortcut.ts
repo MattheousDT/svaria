@@ -66,8 +66,8 @@ const shortcut = (node: HTMLElement, globalShortcuts?: IShortcut[]): SvelteActio
 			removeShortcuts();
 			if (newShortcuts) {
 				globalShortcuts = newShortcuts;
-				addShortcuts();
 			}
+			addShortcuts();
 		},
 		destroy: () => {
 			if (globalShortcuts) {

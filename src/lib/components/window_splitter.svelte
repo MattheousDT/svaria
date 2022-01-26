@@ -10,6 +10,8 @@
 	export let value: number;
 	export let minValue: number = 0;
 	export let maxValue: number = 100;
+	/** Any extra shortcuts to add to the menu */
+	export let additionalShortcuts: IShortcut[] = [];
 	export let containerEl: HTMLElement;
 
 	let splitterEl: HTMLSpanElement;
@@ -108,6 +110,7 @@
 				dispatch("maximize");
 			},
 		},
+		...additionalShortcuts,
 		// ...(panes.length > 0
 		// 	? [
 		// 			{
@@ -139,7 +142,7 @@
 	use:contextual={{ id: primaryPaneId, shortcuts }}
 	bind:this={splitterEl}
 	on:mousedown={handleMousedown}
-	class={["svaria__window-splitter", $$props.class].filter((x) => !!x).join(" ")}
+	class:svaria__window-splitter={true}
 	role="separator"
 	aria-controls={primaryPaneId}
 	aria-label={label}

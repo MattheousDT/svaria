@@ -38,14 +38,14 @@
 
 	<h3>Menubar + MenuItem</h3>
 	<Menubar id="main-nav" label="Main Navigation">
-		<MenuItem let:props>
-			<ParallaxButton {...props} color="lavendar" on:click={() => alert("Hello")}>Say Hello</ParallaxButton>
+		<MenuItem first let:props>
+			<ParallaxButton {...props} color="lavendar" on:click={() => console.log("Hello")}>Say Hello</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
-			<ParallaxButton {...props} color="apricot" on:click={() => alert("Hola")}>Say Hola</ParallaxButton>
+			<ParallaxButton {...props} color="apricot" on:click={() => console.log("Hola")}>Say Hola</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
-			<ParallaxButton {...props} color="rose" on:click={() => alert("안녕")}>Say 안녕</ParallaxButton>
+			<ParallaxButton {...props} color="rose" on:click={() => console.log("안녕")}>Say 안녕</ParallaxButton>
 		</MenuItem>
 	</Menubar>
 

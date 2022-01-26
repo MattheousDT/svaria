@@ -7,7 +7,7 @@
 	@example
 	```svelte
 	<Menubar id="main-nav" label="Main Navigation">
-		<MenuItem let:props>
+		<MenuItem first let:props>
 			<button on:click={() => alert("Hello")} {...props}>
 				Example usage with button
 			</button>
@@ -21,8 +21,8 @@
 	```
 -->
 <script lang="ts">
-	import contextual from "$lib/actions/contextual";
 	import type { IShortcut } from "$lib/@types/shortcuts";
+	import contextual from "$lib/actions/contextual";
 	import { createEventDispatcher } from "svelte";
 
 	// TODO: Add sub-menu functionality
@@ -36,6 +36,8 @@
 
 	let menu: HTMLUListElement;
 	let dispatch = createEventDispatcher();
+	let getItems = (): HTMLElement[] =>
+		Array.from(menu.querySelectorAll(":scope > .svaria__menuitem > [role='menuitem']:first-of-type"));
 
 	let shortcuts: IShortcut[] = [
 		{
@@ -52,12 +54,15 @@
 				"Moves focus to the next item in the menubar. If focus is on the last item, moves focus to the first item.",
 			key: "ArrowRight",
 			callback: (event) => {
-				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const items = getItems();
 				const currIndex = Array.from(items).indexOf(event.target);
+				items.forEach((x) => (x.tabIndex = -1));
 
 				if (currIndex === menu.children.length - 1) {
+					items[0].tabIndex = 0;
 					items[0].focus();
 				} else {
+					items[currIndex + 1].tabIndex = 0;
 					items[currIndex + 1].focus();
 				}
 
@@ -70,12 +75,15 @@
 				"Moves focus to the previous item in the menubar. If focus is on the first item, moves focus to the last item.",
 			key: "ArrowLeft",
 			callback: (event) => {
-				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const items = getItems();
 				const currIndex = Array.from(items).indexOf(event.target);
+				items.forEach((x) => (x.tabIndex = -1));
 
 				if (currIndex === 0) {
+					items[items.length - 1].tabIndex = 0;
 					items[items.length - 1].focus();
 				} else {
+					items[currIndex - 1].tabIndex = 0;
 					items[currIndex - 1].focus();
 				}
 
@@ -87,7 +95,10 @@
 			description: "Moves focus to first item in the menubar.",
 			key: "Home",
 			callback: () => {
-				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const items = getItems();
+				items.forEach((x) => (x.tabIndex = -1));
+
+				items[0].tabIndex = 0;
 				items[0].focus();
 				dispatch("first");
 			},
@@ -97,7 +108,10 @@
 			description: "Moves focus to last item in the menubar.",
 			key: "End",
 			callback: () => {
-				const items: NodeListOf<HTMLElement> = menu.querySelectorAll(":scope > .svaria__menuitem > [tabindex='0']");
+				const items = getItems();
+				items.forEach((x) => (x.tabIndex = -1));
+
+				items[items.length - 1].tabIndex = 0;
 				items[items.length - 1].focus();
 				dispatch("last");
 			},
@@ -110,7 +124,7 @@
 	{id}
 	aria-label={label}
 	role="menubar"
-	class="svaria__menubar"
+	class:svaria__menubar={true}
 	bind:this={menu}
 	use:contextual={{
 		id,

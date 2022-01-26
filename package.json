@@ -1,7 +1,7 @@
 {
 	"name": "svaria",
 	"description": "A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write accessible apps that can scale to any design.",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"main": "index.js",
 	"module": "index.js",
 	"svelte": "index.js",
