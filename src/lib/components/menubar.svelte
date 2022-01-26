@@ -116,6 +116,32 @@
 				dispatch("last");
 			},
 		},
+		{
+			name: "Focus first character",
+			description: "Moves focus to next item in the menubar having a name that starts with the typed character.",
+			key: /^\b\w\b/,
+			callback: (event) => {
+				const unfilteredItems = getItems();
+				const items = unfilteredItems.filter((x) => x.innerText.slice(0, 1).toLocaleLowerCase() === event.key);
+
+				if (items.length === 0) {
+					return;
+				}
+
+				unfilteredItems.forEach((x) => (x.tabIndex = -1));
+
+				const currIndex = Array.from(items).indexOf(event.target);
+
+				if (currIndex === items.length - 1) {
+					items[0].tabIndex = 0;
+					items[0].focus();
+				} else {
+					items[currIndex + 1].tabIndex = 0;
+					items[currIndex + 1].focus();
+				}
+				dispatch("last");
+			},
+		},
 	];
 </script>
 

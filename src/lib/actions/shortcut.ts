@@ -1,4 +1,4 @@
-import type { IShortcut } from "$lib/@types/shortcuts";
+import type { IShortcut, IShortcutStoreItem } from "$lib/@types/shortcuts";
 import shortcuts from "$lib/stores/shortcuts";
 import { get } from "svelte/store";
 
@@ -32,16 +32,18 @@ const shortcut = (node: HTMLElement, globalShortcuts?: IShortcut[]): SvelteActio
 	) {
 		const store = get(shortcuts);
 
-		const match = Object.values(store)
-			.flat()
-			.find(
-				(x) =>
-					(typeof x.key === "string" ? x.key === e.key : x.key.indexOf(e.key) !== -1) &&
-					!!x.ctrlKey === e.ctrlKey &&
-					!!x.altKey === e.altKey &&
-					!!x.metaKey === e.metaKey &&
-					!!x.shiftKey === e.shiftKey
-			);
+		const match = (Object.values(store).flat() as IShortcutStoreItem[]).find(
+			(x) =>
+				(typeof x.key === "string"
+					? x.key === e.key
+					: x.key instanceof RegExp
+					? e.key.match(x.key)
+					: x.key.indexOf(e.key) !== -1) &&
+				!!x.ctrlKey === e.ctrlKey &&
+				!!x.altKey === e.altKey &&
+				!!x.metaKey === e.metaKey &&
+				!!x.shiftKey === e.shiftKey
+		);
 
 		if (match) {
 			e.preventDefault();

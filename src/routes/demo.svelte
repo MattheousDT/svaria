@@ -42,7 +42,7 @@
 			<ParallaxButton {...props} color="lavendar" on:click={() => console.log("Hello")}>Say Hello</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
-			<ParallaxButton {...props} color="apricot" on:click={() => console.log("Hola")}>Say Hola</ParallaxButton>
+			<ParallaxButton {...props} color="apricot" on:click={() => console.log("Hola")}>Alert Hola</ParallaxButton>
 		</MenuItem>
 		<MenuItem let:props>
 			<ParallaxButton {...props} color="rose" on:click={() => console.log("안녕")}>Say 안녕</ParallaxButton>

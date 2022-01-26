@@ -1,5 +1,5 @@
 export interface IShortcut {
-	key: string | string[];
+	key: string | string[] | RegExp;
 	ctrlKey?: boolean;
 	altKey?: boolean;
 	metaKey?: boolean;
