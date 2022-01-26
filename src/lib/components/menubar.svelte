@@ -37,7 +37,7 @@
 	let menu: HTMLUListElement;
 	let dispatch = createEventDispatcher();
 	let getItems = (): HTMLElement[] =>
-		Array.from(menu.querySelectorAll(":scope > .svaria__menuitem > [role='menuitem']:first-of-type"));
+		Array.from(menu.querySelectorAll(":scope > .svaria__menuitem [role='menuitem']:first-of-type"));
 
 	let shortcuts: IShortcut[] = [
 		{
