@@ -1,9 +1,14 @@
 <script lang="ts">
 	import { Menubar, MenuItem } from "svaria";
-	import { LINKS } from "$site/util/constants";
+	import { LANG_MAP, LINKS } from "$site/util/constants";
 	import Button from "./button.svelte";
+	import { locale, locales, t } from "svelte-intl-precompile";
+	import IconLanguage from "~icons/la/language";
+	import IconAngleDown from "~icons/la/angle-down";
 
 	export let height = "5rem";
+
+	let showLanguages = false;
 </script>
 
 <nav style:height>
@@ -13,8 +18,31 @@
 		</a>
 
 		<Menubar id="main-nav" label="Main Navigation">
+			<MenuItem first let:props>
+				<Button
+					{...props}
+					aria-label={$t("nav.language_picker")}
+					on:click={() => (showLanguages = !showLanguages)}
+					theme="secondary"
+					iconPosition="both"
+					size="md"
+				>
+					<IconLanguage />
+					{LANG_MAP[$locale]}
+					<IconAngleDown />
+				</Button>
+				{#if showLanguages}
+					<ul class="languages">
+						{#each $locales as l}
+							<li>
+								<button on:click={() => locale.set(l)}>{LANG_MAP[l]}</button>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</MenuItem>
 			<MenuItem let:props>
-				<Button href={LINKS.documentation} {...props}>Documentation</Button>
+				<Button {...props} href={LINKS.documentation} size="md">{$t("common.documentation")}</Button>
 			</MenuItem>
 		</Menubar>
 	</div>
@@ -41,6 +69,10 @@
 
 	a {
 		text-decoration: none;
+	}
+
+	.languages {
+		position: absolute;
 	}
 
 	.nav-container {

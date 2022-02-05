@@ -1,45 +1,45 @@
 <script>
 	import ParallaxButton from "$site/components/parallax_button.svelte";
 	import { LINKS } from "$site/util/constants";
+	import { t } from "svelte-intl-precompile";
 	import IconArrowRight from "~icons/la/arrow-right";
 	import IconBook from "~icons/la/book";
 
-	let headerImages = [
-		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
-		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
-		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
-		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
-		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
-		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
-		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
-		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
-		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
-		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
-		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
-		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
-		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
-		{ title: "Radio/Checkbox", href: "/docs/components/radio-checkbox", image: "radio-buttons" },
-		{ title: "Window Splitter", href: "/docs/components/window", image: "window-splitter" },
-		{ title: "Accordion", href: "/docs/components/accordion", image: "accordion" },
-		{ title: "Carousel", href: "/docs/components/carousel", image: "carousel" },
-		{ title: "Modal", href: "/docs/components/modal", image: "modal" },
+	$: headerImages = [
+		{ title: $t("components.accordion"), href: "/docs/components/accordion", image: "accordion" },
+		{ title: $t("components.carousel"), href: "/docs/components/carousel", image: "carousel" },
+		{ title: $t("components.modal"), href: "/docs/components/modal", image: "modal" },
+		{ title: $t("components.radio_checkbox"), href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: $t("components.window_splitter"), href: "/docs/components/window", image: "window-splitter" },
+		{ title: $t("components.accordion"), href: "/docs/components/accordion", image: "accordion" },
+		{ title: $t("components.carousel"), href: "/docs/components/carousel", image: "carousel" },
+		{ title: $t("components.modal"), href: "/docs/components/modal", image: "modal" },
+		{ title: $t("components.radio_checkbox"), href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: $t("components.window_splitter"), href: "/docs/components/window", image: "window-splitter" },
+		{ title: $t("components.accordion"), href: "/docs/components/accordion", image: "accordion" },
+		{ title: $t("components.carousel"), href: "/docs/components/carousel", image: "carousel" },
+		{ title: $t("components.modal"), href: "/docs/components/modal", image: "modal" },
+		{ title: $t("components.radio_checkbox"), href: "/docs/components/radio-checkbox", image: "radio-buttons" },
+		{ title: $t("components.window_splitter"), href: "/docs/components/window", image: "window-splitter" },
+		{ title: $t("components.accordion"), href: "/docs/components/accordion", image: "accordion" },
+		{ title: $t("components.carousel"), href: "/docs/components/carousel", image: "carousel" },
+		{ title: $t("components.modal"), href: "/docs/components/modal", image: "modal" },
 	];
 </script>
 
 <header>
 	<div class="container">
-		<h1>The accessibility toolkit for your Svelte apps</h1>
+		<h1>{$t("home.heading")}</h1>
 		<p class="text__h4">
-			A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write
-			accessible apps that can scale to any design.
+			{$t("home.caption")}
 		</p>
 		<div class="buttons">
 			<ParallaxButton href={LINKS.documentation} color="lavendar">
 				<IconBook />
-				Documentation
+				{$t("common.documentation")}
 			</ParallaxButton>
 			<ParallaxButton href={LINKS.getStarted} iconPosition="right" color="rose">
-				Get started
+				{$t("common.get_started")}
 				<IconArrowRight />
 			</ParallaxButton>
 		</div>
@@ -94,6 +94,10 @@
 			grid-template-rows: repeat(3, minmax(0, 1fr));
 			grid-auto-flow: column;
 			gap: 2px;
+
+			p {
+				margin: 0;
+			}
 
 			> a {
 				position: relative;

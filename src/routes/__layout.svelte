@@ -1,3 +1,24 @@
+<script lang="ts" context="module">
+	import type { Load } from "@sveltejs/kit";
+	import { init, register, waitLocale } from "svelte-intl-precompile";
+
+	// @ts-expect-error
+	register("en", () => import("$locales/en"));
+	// @ts-expect-error
+	register("es", () => import("$locales/es"));
+	// @ts-expect-error
+	register("ko", () => import("$locales/ko"));
+
+	export const load: Load = async ({ session }) => {
+		init({
+			fallbackLocale: "en",
+			initialLocale: session.locale,
+		});
+		await waitLocale();
+		return {};
+	};
+</script>
+
 <script lang="ts">
 	import shortcut from "$lib/actions/shortcut";
 	import type { IShortcut } from "svaria";

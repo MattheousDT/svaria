@@ -1,0 +1,56 @@
+{
+  "common": {
+    "actions": "Actions",
+    "battle_tested": "Battle tested",
+    "components": "Components",
+    "documentation": "Documentation",
+    "get_started": "Get started",
+    "learn_more": "Learn more",
+    "search": "Search",
+    "stores": "Stores",
+    "switch_to_dark_mode": "Switch to dark mode",
+    "switch_to_light_mode": "Switch to light mode"
+  },
+  "components": {
+    "accordion": "Accordion",
+    "alert": "Alert",
+    "announcer": "Announcer",
+    "autocomplete": "Autocomplete",
+    "breadcrumbs": "Breadcrumbs",
+    "button": "Button",
+    "carousel": "Carousel",
+    "checkbox": "Checkbox",
+    "dialog": "Dialog",
+    "disclosure": "Disclosure",
+    "dropdown": "Dropdown",
+    "dropdown_menu": "Dropdown Menu",
+    "feed": "Feed",
+    "link": "Link",
+    "listbox": "Listbox",
+    "menubar": "Menubar",
+    "modal": "Modal",
+    "radio_checkbox": "Radio/Checkbox",
+    "radio_group": "Radio Group",
+    "slider": "Slider",
+    "spin_button": "Spin Button",
+    "tabs": "Tabs",
+    "tooltip": "Tooltip",
+    "treegrid": "Treegrid",
+    "window_splitter": "Window splitter"
+  },
+  "home": {
+    "caption": "A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write accessible apps that can scale to any design.",
+    "heading": "The accessibility toolkit for your Svelte apps"
+  },
+  "nav": {
+    "help_us_translate": "Help us translate",
+    "language_picker": "Language picker",
+    "version_picker": "Version picker",
+    "view_on_github": "View on GitHub"
+  },
+  "section": {
+    "getting_started": "Getting Started",
+    "release_notes": "Release Notes",
+    "what_is_a11y": "What is a11y?"
+  }
+}

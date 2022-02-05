@@ -27,6 +27,8 @@
 			"$lib/*": ["src/lib/*"],
 			"$site": ["src/site"],
 			"$site/*": ["src/site/*"],
+			"$locales": ["locales"],
+			"$locales/*": ["locales/*"],
 			"svaria": ["src/lib"],
 			"svaria/*": ["src/lib/*"]
 		}

@@ -2,6 +2,9 @@
 	import { Alert, Menubar, MenuItem, clickoutside, keycombo } from "svaria";
 	import WindowSplitterExample from "$site/components/examples/window_splitter_example.svelte";
 	import ParallaxButton from "$site/components/parallax_button.svelte";
+	import Feed from "$lib/components/feed/feed.svelte";
+	import FeedItem from "$lib/components/feed/feed_item.svelte";
+	import { fly } from "svelte/transition";
 
 	const konamiCode = [
 		"ArrowUp",
@@ -34,6 +37,19 @@
 		<Alert let:props>
 			<h2 use:clickoutside={(e) => console.log(e)} {...props}>Hej, hello, ciao, こんにちは, 안녕</h2>
 		</Alert>
+	{/if}
+
+	<h3 id="feed-label">Feed</h3>
+	{#if alertVisible}
+		<Feed isLoading={false} feedLabelId="feed-label">
+			{#each konamiCode as item, i}
+				<div in:fly={{ x: 50, delay: i * 500 }}>
+					<FeedItem labelId="feed-item-{i}" itemCount={konamiCode.length} index={i}>
+						<p id="feed-item-{i}">{item}</p>
+					</FeedItem>
+				</div>
+			{/each}
+		</Feed>
 	{/if}
 
 	<h3>Menubar + MenuItem</h3>

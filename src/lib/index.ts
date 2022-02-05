@@ -6,6 +6,8 @@ export { default as shortcut } from "./actions/shortcut";
 
 // Components
 export { default as Alert } from "./components/alert.svelte";
+export { default as Feed } from "./components/feed/feed.svelte";
+export { default as FeedItem } from "./components/feed/feed_item.svelte";
 export { default as Menubar } from "./components/menubar.svelte";
 export { default as MenuItem } from "./components/menuitem.svelte";
 export { default as WindowSplitter } from "./components/window_splitter.svelte";

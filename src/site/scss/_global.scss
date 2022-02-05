@@ -57,3 +57,51 @@ $accents: (
 		top: 0.5rem;
 	}
 }
+
+code {
+	font-size: 0.9em;
+}
+
+code:not([class^="language"]) {
+	padding: 4px 8px;
+	border-radius: 6px;
+	background: darken($sand, 5);
+	display: inline-block;
+}
+
+code[class^="language"] {
+	display: block;
+	padding: 2rem;
+	background-color: #292d3e;
+	color: #bfc7d5;
+	overflow-x: auto;
+
+	.token {
+		&.keyword,
+		&.namespace {
+			color: #c792ea;
+		}
+		&.function {
+			color: #82aaff;
+		}
+		&.tag {
+			color: #ff5572;
+		}
+		&.attr-name,
+		&.class-name {
+			color: #ffcb6b;
+		}
+		&.attr-value {
+			color: #c3e88d;
+		}
+		&.punctuation {
+			color: #bfc7d5;
+		}
+		&.operator {
+			color: #89ddff;
+		}
+		&.number {
+			color: #f78c6c;
+		}
+	}
+}

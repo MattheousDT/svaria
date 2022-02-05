@@ -1,0 +1,56 @@
+{
+  "common": {
+    "actions": "행위",
+    "battle_tested": "전투 테스트",
+    "components": "구성품",
+    "documentation": "선적 서류 비치",
+    "get_started": "시작하다",
+    "learn_more": "더 알아보기",
+    "search": "검색",
+    "stores": "백화점",
+    "switch_to_dark_mode": "다크 모드로 전환",
+    "switch_to_light_mode": "조명 모드로 전환"
+  },
+  "components": {
+    "accordion": "아코디언",
+    "alert": "경보",
+    "announcer": "아나운서",
+    "autocomplete": "자동 완성",
+    "breadcrumbs": "빵 부스러기",
+    "button": "단추",
+    "carousel": "캐 러셀",
+    "checkbox": "체크 박스",
+    "dialog": "대화",
+    "disclosure": "폭로",
+    "dropdown": "쓰러지 다",
+    "dropdown_menu": "드롭 다운 메뉴",
+    "feed": "먹이다",
+    "link": "링크",
+    "listbox": "리스트 박스",
+    "menubar": "메뉴 바",
+    "modal": "모달",
+    "radio_checkbox": "라디오/체크박스",
+    "radio_group": "라디오 그룹",
+    "slider": "슬라이더",
+    "spin_button": "스핀 버튼",
+    "tabs": "탭",
+    "tooltip": "툴팁",
+    "treegrid": "트리 그리드",
+    "window_splitter": "창 분할기"
+  },
+  "home": {
+    "caption": "상용구를 줄이고 모든 디자인으로 확장할 수 있는 액세스 가능한 앱을 작성할 수 있도록 하는 것을 목표로 하는 Svelte 작업, 구성 요소 및 저장소의 라이브러리입니다.",
+    "heading": "Svelte 앱용 접근성 도구 키트"
+  },
+  "nav": {
+    "help_us_translate": "번역을 도와주세요",
+    "language_picker": "언어 선택기",
+    "version_picker": "버전 선택기",
+    "view_on_github": "GitHub에서보기"
+  },
+  "section": {
+    "getting_started": "시작하기",
+    "release_notes": "릴리즈 노트",
+    "what_is_a11y": "a11y는 무엇입니까?"
+  }
+}
