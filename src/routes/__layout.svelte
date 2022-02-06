@@ -46,7 +46,7 @@
 	<main class="flex-1" style:padding-top="{navHeight / 16}rem">
 		<slot />
 	</main>
-	<footer>Made with ❤ in Belfast</footer>
+	<footer class="flex items-center justify-center text-center text-grey p-4">Made with ❤ in Belfast</footer>
 </div>
 
 <!-- <Shortcuts /> -->

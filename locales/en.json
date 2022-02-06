@@ -10,7 +10,9 @@
     "search": "Search",
     "stores": "Stores",
     "switch_to_dark_mode": "Switch to dark mode",
-    "switch_to_light_mode": "Switch to light mode"
+    "switch_to_light_mode": "Switch to light mode",
+    "view_aria_spec": "View ARIA Spec",
+    "view_source": "View Source"
   },
   "components": {
     "accordion": "Accordion",

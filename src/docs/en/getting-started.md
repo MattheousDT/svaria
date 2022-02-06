@@ -6,6 +6,7 @@ slug: /getting-started
 ---
 
 ## 🚧 Work in progress
+
 This library is very much a work-in-progress and may be subject to large API changes.
 
 **I STRONGLY RECOMMEND that you wait until version 1.0 before using this library.**

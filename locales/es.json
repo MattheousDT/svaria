@@ -10,7 +10,9 @@
     "search": "Búsqueda",
     "stores": "Historias",
     "switch_to_dark_mode": "Cambiar al modo oscuro",
-    "switch_to_light_mode": "Cambiar al modo de luz"
+    "switch_to_light_mode": "Cambiar al modo de luz",
+    "view_aria_spec": "Ver especificaciones de ARIA",
+    "view_source": "Ver fuente"
   },
   "components": {
     "accordion": "Acordeón",

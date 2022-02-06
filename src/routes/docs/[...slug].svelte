@@ -32,6 +32,8 @@
 </script>
 
 <script lang="ts">
+	import LogoLinkButton from "$site/components/logo_link_button.svelte";
+
 	export let availableInCurrentLocale: boolean;
 	export let body: any;
 	export let metadata: {
@@ -89,6 +91,21 @@
 		{#if metadata.description}
 			<big class="mb-2 text-grey font-medium">{metadata.description}</big>
 		{/if}
+
+		{#if metadata.aria || metadata.github || metadata.repl}
+			<div class="mt-10 flex children:not-last:mr-4">
+				{#if metadata.aria}
+					<LogoLinkButton icon="w3c" text={$t("common.view_aria_spec")} subtext="W3C" href={metadata.aria} />
+				{/if}
+				{#if metadata.github}
+					<LogoLinkButton icon="github" text={$t("common.view_source")} subtext="GitHub" href={metadata.github} />
+				{/if}
+				{#if metadata.repl}
+					<LogoLinkButton icon="svelte" text="Svelte REPL" subtext="svelte.dev" href={metadata.repl} />
+				{/if}
+			</div>
+		{/if}
+
 		<div class="md">
 			<svelte:component this={body} />
 		</div>
@@ -105,6 +122,7 @@
 		> h5,
 		> h6 {
 			@apply font-heading font-bold text-blue-900 not-first:mt-10;
+			letter-spacing: -0.03em;
 		}
 
 		> p {
@@ -127,8 +145,16 @@
 			@apply text-xl;
 		}
 
+		> pre > code[class^="language"] {
+			@apply my-10 rounded-xl;
+		}
+
+		> blockquote {
+			@apply my-5 border-l-4 border-grey-300 mx-0 p-2 pl-4 italic;
+		}
+
 		a {
-			@apply text-red underline hover:text-blue-900;
+			@apply text-red font-bold underline hover:text-blue-900;
 		}
 
 		table {

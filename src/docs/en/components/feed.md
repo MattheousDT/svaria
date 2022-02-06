@@ -4,7 +4,7 @@ pretitle: Components
 title: Feed
 description: A feed is a section of a page that automatically loads new sections of content as the user scrolls. The sections of content in a feed are presented in article elements. So, a feed can be thought of as a dynamic list of articles that often appears to scroll infinitely.
 slug: /components/feed
-aria: https://www.w3.org/TR/wai-aria-practices-1.1/#alert
+aria: https://www.w3.org/TR/wai-aria-practices-1.1/#feed
 github: /
 repl: /
 ---

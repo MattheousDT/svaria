@@ -10,7 +10,9 @@
     "search": "검색",
     "stores": "백화점",
     "switch_to_dark_mode": "다크 모드로 전환",
-    "switch_to_light_mode": "조명 모드로 전환"
+    "switch_to_light_mode": "조명 모드로 전환",
+    "view_aria_spec": "ARIA 사양 보기",
+    "view_source": "소스보기"
   },
   "components": {
     "accordion": "아코디언",
