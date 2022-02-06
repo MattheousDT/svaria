@@ -12,7 +12,7 @@
 	export const load: Load = async ({ session }) => {
 		init({
 			fallbackLocale: "en",
-			initialLocale: session.locale,
+			initialLocale: session["locale"],
 		});
 		await waitLocale();
 		return {};
@@ -20,13 +20,14 @@
 </script>
 
 <script lang="ts">
+	import "virtual:windi.css";
 	import shortcut from "$lib/actions/shortcut";
 	import type { IShortcut } from "svaria";
 	import Nav from "$site/components/nav.svelte";
-	import Shortcuts from "$site/components/shortcuts.svelte";
+	// import Shortcuts from "$site/components/shortcuts.svelte";
 	import { shortcutsVisibility } from "$site/stores/prefs";
 
-	let navHeight: string;
+	let navHeight: number;
 
 	let globalShortcuts: IShortcut[] = [
 		{
@@ -40,32 +41,85 @@
 
 <svelte:body use:shortcut={globalShortcuts} />
 
-<Nav bind:height={navHeight} />
-<main style:padding-top={navHeight}>
-	<slot />
-</main>
-<footer>Made with ❤ in Belfast</footer>
-<Shortcuts />
+<div class="bg-grey-100 flex flex-col min-h-screen">
+	<Nav bind:height={navHeight} />
+	<main class="flex-1" style:padding-top="{navHeight / 16}rem">
+		<slot />
+	</main>
+	<footer>Made with ❤ in Belfast</footer>
+</div>
 
+<!-- <Shortcuts /> -->
 <style lang="scss" global>
-	@import "global";
-	@import "variables";
+	@import url("https://fonts.googleapis.com/css?family=Lato:400+500+700|Space+Grotesk:700|Fira+Code");
 
-	#svelte {
-		background-color: $sand;
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
+	.font-heading {
+		letter-spacing: -0.03em;
 	}
 
-	main {
-		flex: 1;
+	.underline-beneath {
+		position: relative;
+		z-index: 0;
+
+		&::before {
+			content: "";
+			width: 102%;
+			height: 0.25em;
+			background: linear-gradient(180deg, #fbced6 0%, #f8d4c5 100%);
+			position: absolute;
+			z-index: -1;
+			bottom: 0.15em;
+			left: -1%;
+			border-radius: 4px;
+		}
 	}
 
-	footer {
-		padding: 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	code {
+		font-family: "Fira Code", "Consolas", monospace;
+	}
+
+	code:not([class^="language"]) {
+		padding: 4px 8px;
+		border-radius: 6px;
+		background: #e9e9e9;
+		display: inline-block;
+	}
+
+	code[class^="language"] {
+		display: block;
+		padding: 2rem;
+		background-color: #292d3e;
+		color: #bfc7d5;
+		overflow-x: auto;
+		font-size: 1rem;
+
+		.token {
+			&.keyword,
+			&.namespace {
+				color: #c792ea;
+			}
+			&.function {
+				color: #82aaff;
+			}
+			&.tag {
+				color: #ff5572;
+			}
+			&.attr-name,
+			&.class-name {
+				color: #ffcb6b;
+			}
+			&.attr-value {
+				color: #c3e88d;
+			}
+			&.punctuation {
+				color: #bfc7d5;
+			}
+			&.operator {
+				color: #89ddff;
+			}
+			&.number {
+				color: #f78c6c;
+			}
+		}
 	}
 </style>

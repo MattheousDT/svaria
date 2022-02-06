@@ -1,6 +1,7 @@
 {
   "common": {
     "actions": "행위",
+    "average_size": "평균 크기",
     "battle_tested": "전투 테스트",
     "components": "구성품",
     "documentation": "선적 서류 비치",
@@ -40,7 +41,7 @@
   },
   "home": {
     "caption": "상용구를 줄이고 모든 디자인으로 확장할 수 있는 액세스 가능한 앱을 작성할 수 있도록 하는 것을 목표로 하는 Svelte 작업, 구성 요소 및 저장소의 라이브러리입니다.",
-    "heading": "Svelte 앱용 접근성 도구 키트"
+    "heading": "Svelte 앱을 위한 내게 <0>필요한</0> 옵션 툴킷"
   },
   "nav": {
     "help_us_translate": "번역을 도와주세요",

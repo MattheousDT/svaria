@@ -1,112 +1,43 @@
 <script lang="ts">
-	export let iconPosition: "left" | "right" | "both" = "left";
+	import clsx from "clsx";
+
+	export let iconPosition: "left" | "right" = "left";
 	export let size: "sm" | "md" | "lg" = "md";
 	export let theme: "primary" | "secondary" | "tertiary" = "primary";
+
+	let baseButtonClasses =
+		"inline-flex items-center rounded-lg border-2 focus:outline-none transition-colors font-semibold truncate";
+
+	$: themeClasses =
+		theme === "primary"
+			? "border-transparent text-white bg-red"
+			: theme === "secondary"
+			? "border-red text-red bg-transparent"
+			: "border-transparent text-grey bg-transparent hover:bg-grey-200";
+
+	$: sizeClasses =
+		size === "sm"
+			? // Small
+			  "py-1.5 px-3 font-bold text-sm"
+			: size === "lg"
+			? // Large
+			  "py-4 px-5 font-bold"
+			: // Regular
+			  "py-3 px-4 font-bold text-sm";
+
+	$: finalButtonClasses = clsx(baseButtonClasses, themeClasses, sizeClasses, $$props.class);
+
+	$: iconSizeClass = size === "sm" ? "1rem" : size === "lg" ? "1.5rem" : "1.25rem";
+	$: iconPositionClass = iconPosition === "left" ? "mr-2.5" : "ml-2.5";
+	$: iconClass = clsx(iconSizeClass, iconPositionClass, "pointer-events-none");
 </script>
 
 {#if $$props.href}
-	<a href={$$props.href} on:click class="icon-{iconPosition} size-{size} theme-{theme}" {...$$restProps}>
-		<slot />
+	<a {...$$restProps} href={$$props.href} on:click class={finalButtonClasses}>
+		<slot {iconClass} />
 	</a>
 {:else}
-	<button on:click class="icon-{iconPosition} size-{size} theme-{theme}" {...$$restProps}>
-		<slot />
+	<button {...$$restProps} on:click class={finalButtonClasses}>
+		<slot {iconClass} {iconSizeClass} {iconPositionClass} />
 	</button>
 {/if}
-
-<style lang="scss">
-	@import "variables";
-
-	button,
-	a {
-		display: inline-flex;
-		border: 2px solid transparent;
-		font-family: $sans-primary;
-		transform: translate(var(--left), var(--top));
-		cursor: pointer;
-		text-decoration: none;
-		transition: transform 150ms cubic-bezier(0, 0, 0.27, 2.54), background 150ms ease;
-
-		&.size {
-			&-sm {
-				padding: 0.5rem 0.75rem;
-				font-weight: 500;
-				font-size: 0.875rem;
-			}
-			&-md {
-				padding: 0.6875rem 1.25rem;
-				font-weight: 700;
-				font-size: 1rem;
-			}
-			&-lg {
-			}
-		}
-
-		&.theme {
-			&-primary {
-				color: $sand;
-				background: $navy;
-
-				&:hover {
-					background: $navy-light;
-				}
-
-				&:active,
-				&:focus-visible {
-					background: $navy-light;
-				}
-			}
-			&-secondary {
-				background: transparent;
-				color: $navy;
-				border-color: $navy;
-
-				&:hover {
-					background: rgba($navy, 0.1);
-				}
-
-				&:active,
-				&:focus-visible {
-					background: rgba($navy, 0.1);
-				}
-			}
-			&-tertiary {
-				background: transparent;
-				color: $sand;
-				border-color: $sand;
-				&:hover {
-					background: rgba(white, 0.2);
-				}
-
-				&:active,
-				&:focus-visible {
-					background: rgba(white, 0.2);
-				}
-			}
-		}
-
-		&:focus {
-			outline: none;
-		}
-
-		&:active,
-		&:focus-visible {
-			transform: scale(95%);
-		}
-
-		> :global(svg) {
-			width: 1.5em;
-			height: 1.5em;
-		}
-
-		&.icon-left > :global(svg),
-		&.icon-both > :global(svg:first-of-type) {
-			margin-right: 0.75rem;
-		}
-
-		&.icon-right > :global(svg),
-		&.icon-both > :global(svg:last-of-type) {
-			margin-left: 0.75rem;
-		}
-	}
-</style>

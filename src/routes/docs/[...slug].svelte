@@ -1,6 +1,9 @@
 <script lang="ts" context="module">
+	import { page } from "$app/stores";
+	import Error from "$site/components/error.svelte";
+	import DocsLayout from "$site/components/layout/docs_layout.svelte";
 	import type { Load } from "@sveltejs/kit";
-	import path from "path";
+	import { getCurrentLocale, locale } from "svelte-intl-precompile";
 
 	export const load: Load = async ({ params, session }) => {
 		let docs: any;
@@ -30,11 +33,6 @@
 </script>
 
 <script lang="ts">
-	import DocsLayout from "$site/components/layout/docs_layout.svelte";
-	import { getCurrentLocale, locale } from "svelte-intl-precompile";
-	import { page } from "$app/stores";
-	import Error from "$site/components/error.svelte";
-
 	export let availableInCurrentLocale: boolean;
 	export let body: any;
 	export let metadata: {
@@ -77,14 +75,14 @@
 		<Error>This page is not available in your current language.</Error>
 	{/if}
 	<div class="content">
-		<h1>
+		<h1 class="font-heading text-7xl mb-4 font-bold text-blue-900">
 			{#if metadata.pretitle}
-				<p>{metadata.pretitle}</p>
+				<p class="text-2xl">{metadata.pretitle}</p>
 			{/if}
 			{metadata.title}
 		</h1>
 		{#if metadata.description}
-			<big>{metadata.description}</big>
+			<big class="mb-2 text-grey font-medium">{metadata.description}</big>
 		{/if}
 		<div class="md">
 			<svelte:component this={body} />
@@ -93,20 +91,6 @@
 </DocsLayout>
 
 <style lang="scss">
-	@import "variables";
-
-	.content {
-		margin: 3.75rem 0;
-	}
-
-	h1 {
-		p {
-			display: block;
-			font-size: 1.5rem;
-			margin-bottom: 0.625rem;
-		}
-	}
-
 	.md {
 		margin: 3.75rem 0;
 
@@ -118,13 +102,13 @@
 		}
 		:global(td),
 		:global(th) {
-			border: 2px solid $navy;
+			// border: 2px solid $navy;
 			padding: 10px 20px;
 		}
 
 		:global(th) {
 			font-size: 18px;
-			font-family: $sans-primary;
+			// font-family: $sans-primary;
 			font-weight: 700;
 		}
 	}

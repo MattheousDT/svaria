@@ -1,56 +1,57 @@
 {
-	"common": {
-		"actions": "Comportamiento",
-		"battle_tested": "Probado en batalla",
-		"components": "Componentes",
-		"documentation": "Documentación",
-		"get_started": "Empezar",
-		"learn_more": "Aprende más",
-		"search": "Búsqueda",
-		"stores": "Historias",
-		"switch_to_dark_mode": "Cambiar al modo oscuro",
-		"switch_to_light_mode": "Cambiar al modo de luz"
-	},
-	"components": {
-		"accordion": "Acordeón",
-		"alert": "Alerta",
-		"announcer": "Locutor",
-		"autocomplete": "Autocompletar",
-		"breadcrumbs": "Migas de pan",
-		"button": "Botón",
-		"carousel": "Carrusel",
-		"checkbox": "Caja",
-		"dialog": "Diálogo",
-		"disclosure": "Divulgar",
-		"dropdown": "Desplegable",
-		"dropdown_menu": "Menú desplegable",
-		"feed": "Alimentación",
-		"link": "Enlace",
-		"listbox": "Cuadro de lista",
-		"menubar": "Barra de menús",
-		"modal": "Modal",
-		"radio_checkbox": "Radio/casilla de verificación",
-		"radio_group": "grupo radial",
-		"slider": "Deslizador",
-		"spin_button": "Botón Girar",
-		"tabs": "Pestañas",
-		"tooltip": "Información sobre herramientas",
-		"treegrid": "Cuadrícula de árboles",
-		"window_splitter": "Divisor de ventana"
-	},
-	"home": {
-		"caption": "Una biblioteca de acciones, componentes y tiendas de Svelte que tiene como objetivo reducir el modelo estándar y permitirle escribir aplicaciones accesibles que pueden adaptarse a cualquier diseño.",
-		"heading": "El kit de herramientas de accesibilidad para sus aplicaciones Svelte"
-	},
-	"nav": {
-		"help_us_translate": "Ayúdanos a traducir",
-		"language_picker": "selector de idioma",
-		"version_picker": "selector de versión",
-		"view_on_github": "Ver en GitHub"
-	},
-	"section": {
-		"getting_started": "Empezando",
-		"release_notes": "Notas de lanzamiento",
-		"what_is_a11y": "¿Qué es a11y?"
-	}
+  "common": {
+    "actions": "Comportamiento",
+    "average_size": "Tamaño promedio",
+    "battle_tested": "Probado en batalla",
+    "components": "Componentes",
+    "documentation": "Documentación",
+    "get_started": "Empezar",
+    "learn_more": "Aprende más",
+    "search": "Búsqueda",
+    "stores": "Historias",
+    "switch_to_dark_mode": "Cambiar al modo oscuro",
+    "switch_to_light_mode": "Cambiar al modo de luz"
+  },
+  "components": {
+    "accordion": "Acordeón",
+    "alert": "Alerta",
+    "announcer": "Locutor",
+    "autocomplete": "Autocompletar",
+    "breadcrumbs": "Migas de pan",
+    "button": "Botón",
+    "carousel": "Carrusel",
+    "checkbox": "Caja",
+    "dialog": "Diálogo",
+    "disclosure": "Divulgar",
+    "dropdown": "Desplegable",
+    "dropdown_menu": "Menú desplegable",
+    "feed": "Alimentación",
+    "link": "Enlace",
+    "listbox": "Cuadro de lista",
+    "menubar": "Barra de menús",
+    "modal": "Modal",
+    "radio_checkbox": "Radio/casilla de verificación",
+    "radio_group": "grupo radial",
+    "slider": "Deslizador",
+    "spin_button": "Botón Girar",
+    "tabs": "Pestañas",
+    "tooltip": "Información sobre herramientas",
+    "treegrid": "Cuadrícula de árboles",
+    "window_splitter": "Divisor de ventana"
+  },
+  "home": {
+    "caption": "Una biblioteca de acciones, componentes y tiendas de Svelte que tiene como objetivo reducir el modelo estándar y permitirle escribir aplicaciones accesibles que pueden adaptarse a cualquier diseño.",
+    "heading": "<0>Accesibilidad</0> para Svelte simplificada"
+  },
+  "nav": {
+    "help_us_translate": "Ayúdanos a traducir",
+    "language_picker": "selector de idioma",
+    "version_picker": "selector de versión",
+    "view_on_github": "Ver en GitHub"
+  },
+  "section": {
+    "getting_started": "Empezando",
+    "release_notes": "Notas de lanzamiento",
+    "what_is_a11y": "¿Qué es a11y?"
+  }
 }

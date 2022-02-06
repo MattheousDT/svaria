@@ -16,7 +16,7 @@ repl: /
 
 ## 예
 
-<Example>
+<Example value={66}>
 
 <span slot="preview">
   <AlertExample />

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { WindowSplitter } from "svaria";
-	import IconClipboard from "~icons/la/clipboard";
-	import IconGripLines from "~icons/la/grip-lines-vertical";
+	import IconClipboard from "~icons/uil/clipboard";
+	import IconGripLines from "~icons/uil/grip-horizontal-line";
 	import Button from "./button.svelte";
 
-	let value = 50;
+	export let value = 50;
 	let container: HTMLDivElement;
 	let code: HTMLDivElement;
 
@@ -13,9 +13,13 @@
 	};
 </script>
 
-<div class="example" bind:this={container} style:grid-template-columns="{value}% 1rem auto">
-	<div id="code-pane" bind:this={code}>
-		<Button on:click={copyToClipboard} size="sm" theme="tertiary">
+<div class="example grid w-full h-lg my-10" bind:this={container} style:grid-template-columns="{value}% 1rem auto">
+	<div
+		id="code-pane"
+		bind:this={code}
+		class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto"
+	>
+		<Button on:click={copyToClipboard} size="sm" theme="secondary" class="absolute top-4 right-4">
 			<IconClipboard />
 			Copy to clipboard
 		</Button>
@@ -25,30 +29,25 @@
 		primaryPaneId="code-pane"
 		label="Demo splitter"
 		bind:value
-		minValue={33}
-		maxValue={66}
+		minValue={30}
+		maxValue={70}
 		containerEl={container}
 	>
-		<span class="line">
-			<IconGripLines />
+		<span class="flex h-full w-4 justify-center items-center">
+			<IconGripLines class="transform rotate-90" />
 		</span>
 	</WindowSplitter>
-	<div id="preview-pane">
+	<div
+		id="preview-pane"
+		class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto bg-white"
+	>
 		<slot name="preview" />
 	</div>
 </div>
 
 <style lang="scss">
-	@import "./variables";
-
 	.example {
-		display: grid;
-		width: 100%;
-		height: 30rem;
-		overflow: hidden;
-		border: 2px solid $navy;
-		margin: 2.5rem 0;
-
+		will-change: grid-template-columns;
 		@media screen and (min-width: 1800px) {
 			margin-left: -7.5rem;
 			margin-right: -7.5rem;
@@ -64,16 +63,6 @@
 		}
 	}
 
-	.line {
-		display: flex;
-		height: 100%;
-		width: 1rem;
-		background: $apricot;
-		justify-content: center;
-		align-items: center;
-		color: $navy;
-	}
-
 	#code-pane {
 		// font-size: 0.875rem;
 		> :global(pre) {
@@ -85,24 +74,5 @@
 				height: 100%;
 			}
 		}
-
-		:global(button) {
-			position: absolute;
-			top: 1rem;
-			right: 1rem;
-		}
-	}
-
-	#preview-pane {
-		background: white;
-	}
-
-	#preview-pane,
-	#code-pane {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: auto;
 	}
 </style>

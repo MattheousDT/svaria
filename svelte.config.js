@@ -4,6 +4,7 @@ import path from "path";
 import preprocess from "svelte-preprocess";
 import Icons from "unplugin-icons/vite";
 import precompileIntl from "svelte-intl-precompile/sveltekit-plugin.js";
+import WindiCSS from "vite-plugin-windicss";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,12 +19,12 @@ const config = {
 	],
 	kit: {
 		adapter: adapter(),
-		target: "#svelte",
 		vite: {
 			plugins: [
 				Icons({
 					compiler: "svelte",
 				}),
+				WindiCSS(),
 				precompileIntl("locales"),
 			],
 			resolve: {

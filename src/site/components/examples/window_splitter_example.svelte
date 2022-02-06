@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { WindowSplitter } from "svaria";
+	import IconGripLines from "~icons/uil/grip-horizontal-line";
 
+	let container: HTMLDivElement;
 	let value = 50;
 	let minValue = 20;
 	let maxValue = 80;
-	let container: HTMLDivElement;
 </script>
 
 <table>
@@ -28,31 +29,33 @@
 	</td>
 </table>
 
-<div bind:this={container} style:grid-template-columns="{value}% 2rem auto">
-	<aside id="primary-pane">Primary pane</aside>
+<div class="example grid w-full h-lg my-10" bind:this={container} style:grid-template-columns="{value}% 1rem auto">
+	<div id="code-pane" class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto bg-red-200">
+		<h2>Primary content</h2>
+	</div>
 	<WindowSplitter
-		primaryPaneId="primary-pane"
+		primaryPaneId="code-pane"
 		label="Demo splitter"
 		bind:value
-		{minValue}
-		{maxValue}
+		minValue={30}
+		maxValue={70}
 		containerEl={container}
 	>
-		<span class="line" />
+		<span class="flex h-full w-4 justify-center items-center">
+			<IconGripLines class="transform rotate-90" />
+		</span>
 	</WindowSplitter>
-	<article id="secondary-pane">Secondary pane</article>
+	<div
+		id="preview-pane"
+		class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto bg-white"
+	>
+		<h2>Secondary content</h2>
+	</div>
 </div>
 
 <style lang="scss">
-	@import "./variables";
-
-	div {
-		display: grid;
-		width: 100%;
-		height: 400px;
-		overflow: hidden;
-		margin-top: 1rem;
-		border: 2px solid $navy;
+	.example {
+		will-change: grid-template-columns;
 
 		:global(.svaria__window-splitter) {
 			display: flex;
@@ -63,30 +66,16 @@
 		}
 	}
 
-	input {
-		display: block;
-	}
+	#code-pane {
+		// font-size: 0.875rem;
+		> :global(pre) {
+			width: 100%;
+			height: 100%;
+			margin: 0;
 
-	span {
-		display: block;
-		height: 100%;
-		width: 2px;
-		background: $navy;
-	}
-
-	aside {
-		background: $lavendar;
-	}
-	article {
-		background: $rose;
-	}
-
-	article,
-	aside {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.5rem;
-		overflow: hidden;
+			> :global(code) {
+				height: 100%;
+			}
+		}
 	}
 </style>

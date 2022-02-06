@@ -1,27 +1,40 @@
 <script lang="ts">
-	import { page, url } from "$app/stores";
+	import { page } from "$app/stores";
+	import clsx from "clsx";
 	import { locale, t } from "svelte-intl-precompile";
-	import ParallaxButton from "./parallax_button.svelte";
-	import IconArrow from "~icons/la/arrow-right";
+	import { quadOut } from "svelte/easing";
+	import { crossfade } from "svelte/transition";
+	import IconKeyboard from "~icons/uil/keyboard";
+	import IconALS from "~icons/uil/assistive-listening-systems";
+	import IconWheelchair from "~icons/uil/accessible-icon-alt";
+	import IconList from "~icons/uil/list-ui-alt";
+	import IconBooks from "~icons/uil/books";
+	import Button from "./button.svelte";
+	import SidebarTopLink from "./sidebar/sidebar_top_link.svelte";
+
+	const [send, receive] = crossfade({
+		duration: (d) => Math.sqrt(d * 500),
+		easing: quadOut,
+	});
 
 	$: topItems = [
 		{
 			text: $t("section.getting_started"),
-			// icon: Animation,
+			icon: IconKeyboard,
 			link: "/docs/getting-started",
-			color: "teal",
+			color: "red",
 		},
 		{
 			text: $t("section.what_is_a11y"),
-			// icon: Accessibility,
+			icon: IconWheelchair,
 			link: "/docs/what-is-a11y",
-			color: "pink",
+			color: "orange",
 		},
 		{
 			text: $t("section.release_notes"),
-			// icon: Book,
+			icon: IconBooks,
 			link: "/docs/release-notes",
-			color: "yellow",
+			color: "purple",
 		},
 	];
 
@@ -67,94 +80,36 @@
 	};
 </script>
 
-<aside class="hidden lg:block w-full max-w-[300px] px-5 lg:px-8 bg-700">
+<aside
+	class="hidden lg:block sticky top-[5.25rem] h-[calc(100vh-5.25rem)] w-full max-w-[300px] px-4 overflow-y-auto shadow-card"
+>
+	<ul class="my-8">
+		{#each topItems as item}
+			<li class="relative">
+				<SidebarTopLink {...item} />
+			</li>
+		{/each}
+	</ul>
+
+	<span class="block h-0.5 rounded bg-grey-300 mx-4" />
+
 	{#each Object.entries(bottomItems) as [section, items]}
-		<section>
-			<h4 id={section} class="text__h6">{section}</h4>
+		<div class="my-8">
+			<h4 id={section} class="uppercase font-bold text-sm px-4 mb-4 text-blue-900">{section}</h4>
 			<ul aria-labelledby={section}>
 				{#each Object.entries(items).sort((a, b) => a[0].localeCompare(b[0], $locale)) as [item, link]}
-					<li>
-						<a class="menu-item" class:menu-item--active={$page.url.pathname === link} href={link}>
+					{@const selected = $page.url.pathname === link}
+
+					<li class="relative">
+						{#if selected}
+							<span class="absolute -left-4 top-0 h-full w-1 bg-red" />
+						{/if}
+						<Button href={link} class={clsx("w-full text-left", selected && "text-red")} theme="tertiary" size="md">
 							{item}
-							{#if $page.url.pathname === link}
-								<IconArrow />
-							{/if}
-						</a>
+						</Button>
 					</li>
 				{/each}
 			</ul>
-		</section>
+		</div>
 	{/each}
 </aside>
-
-<style lang="scss">
-	@import "variables";
-
-	aside {
-		position: sticky;
-		height: calc(100vh - 5rem);
-		top: 5rem;
-		border-right: 2px solid $navy;
-		padding: 0 1rem;
-		overflow-y: hidden;
-		width: 100%;
-		max-width: 18.75rem;
-	}
-
-	section {
-		margin: 3.75rem 0;
-	}
-
-	ul {
-		list-style-type: none;
-	}
-
-	h4 {
-		padding: 0.5rem 1rem;
-	}
-
-	.menu-item {
-		position: relative;
-		padding: 0.5rem 1rem;
-		font-weight: 500;
-		color: $navy-light;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border: 1px solid transparent;
-		background: transparent;
-		text-decoration: none;
-		transition: transform 150ms cubic-bezier(0, 0, 0.27, 2.54), background 150ms ease;
-
-		&:hover {
-			background: darken($sand, 5);
-		}
-
-		&:active {
-			transform: scale(0.95);
-		}
-
-		&--active {
-			border-color: $navy;
-			color: $navy;
-
-			&:hover {
-				background: transparent;
-			}
-
-			&::after {
-				content: "";
-				z-index: -1;
-				position: absolute;
-				pointer-events: none;
-				width: 100%;
-				height: 100%;
-				top: 0;
-				left: 0;
-				transform: translate(0.25rem, 0.25rem);
-				background-color: $rose;
-				transition: transform 150ms cubic-bezier(0, 0, 0.27, 2.54);
-			}
-		}
-	}
-</style>

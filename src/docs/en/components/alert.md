@@ -18,7 +18,7 @@ repl: /
 
 When the button is clicked, the text should be read aloud by the screenreader.
 
-<Example>
+<Example value={66}>
 
 <span slot="preview">
   <AlertExample />

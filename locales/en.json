@@ -1,6 +1,7 @@
 {
   "common": {
     "actions": "Actions",
+    "average_size": "Average size",
     "battle_tested": "Battle tested",
     "components": "Components",
     "documentation": "Documentation",
@@ -40,7 +41,7 @@
   },
   "home": {
     "caption": "A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write accessible apps that can scale to any design.",
-    "heading": "The accessibility toolkit for your Svelte apps"
+    "heading": "The <0>accessibility</0> toolkit for your Svelte apps"
   },
   "nav": {
     "help_us_translate": "Help us translate",
