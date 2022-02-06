@@ -51,13 +51,18 @@ This example uses the [wingetdotrun api](https://winget.run/) to get a list of p
 <h3 id="feed-label">Winget Packages</h3>
 <Feed isLoading={loading} feedLabelId="feed-label">
   {#each items as item, i}
-    <FeedItem labelId={item.Id} descriptionId="{item.Id}-desc" itemCount={items.length} index={i}>
-        <div class="my-4">
-          <h4 id={item.Id}>{item.Latest.Name}</h4>
-          {#if item.Latest.Description}
-            <p id="{item.Id}-desc">{item.Latest.Description}</p>
-          {/if}
-        </div>
+    <FeedItem
+      labelId={item.Id}
+      descriptionId="{item.Id}-desc"
+      itemCount={items.length}
+      index={i}
+    >
+      <div>
+        <h4 id={item.Id}>{item.Latest.Name}</h4>
+        {#if item.Latest.Description}
+          <p id="{item.Id}-desc">{item.Latest.Description}</p>
+        {/if}
+      </div>
     </FeedItem>
   {/each}
 </Feed>

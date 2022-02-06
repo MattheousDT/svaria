@@ -27,11 +27,11 @@
 	<h3 class="font-heading text-3xl text-blue-900" id="feed-label">Winget Packages</h3>
 	<Feed isLoading={loading} feedLabelId="feed-label">
 		{#each items as item, i}
-			<FeedItem labelId={item.Id} itemCount={items.length} index={i}>
+			<FeedItem labelId={item.Id} descriptionId="{item.Id}-desc" itemCount={items.length} index={i}>
 				<div class="my-4">
 					<h4 id={item.Id} class="text-xl font-bold text-blue-900">{item.Latest.Name}</h4>
 					{#if item.Latest.Description}
-						<p id={item.Id} class="text-grey">{item.Latest.Description}</p>
+						<p id="{item.Id}-desc" class="text-grey">{item.Latest.Description}</p>
 					{/if}
 				</div>
 			</FeedItem>
