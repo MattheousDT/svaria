@@ -39,6 +39,9 @@
     "treegrid": "Treegrid",
     "window_splitter": "Window splitter"
   },
+  "errors": {
+    "language_not_available": "This page is not available in your current language."
+  },
   "home": {
     "caption": "A library of Svelte actions, components, and stores that aims to cut down on boilerplate and allow you to write accessible apps that can scale to any design.",
     "heading": "The <0>accessibility</0> toolkit for your Svelte apps"

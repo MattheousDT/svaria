@@ -19,6 +19,7 @@
 	class={clsx("w-full text-left", selected && "text-red")}
 	theme="tertiary"
 	size="md"
+	data-selected={selected}
 	let:iconSizeClass
 	let:iconPositionClass
 >

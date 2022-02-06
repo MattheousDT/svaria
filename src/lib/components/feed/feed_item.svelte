@@ -4,9 +4,13 @@
 	import type { IShortcut } from "svaria/@types/shortcuts";
 	import { createEventDispatcher } from "svelte";
 
+	/** An element ID selector that points to a piece of text which gives an appropriate label to current item */
 	export let labelId: string;
+	/** An element ID selector that points to one or more pieces of text which gives an appropriate description to current item */
 	export let descriptionId: string = null;
+	/** The current index of the element in the feed */
 	export let index: number;
+	/** The total amount of items in the feed */
 	export let itemCount: number;
 
 	let dispatch = createEventDispatcher();

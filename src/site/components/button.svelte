@@ -27,7 +27,7 @@
 
 	$: finalButtonClasses = clsx(baseButtonClasses, themeClasses, sizeClasses, $$props.class);
 
-	$: iconSizeClass = size === "sm" ? "1rem" : size === "lg" ? "1.5rem" : "1.25rem";
+	$: iconSizeClass = size === "sm" ? "w-4 h-4" : size === "lg" ? "w-6 h-6" : "w-5 h-5";
 	$: iconPositionClass = iconPosition === "left" ? "mr-2.5" : "ml-2.5";
 	$: iconClass = clsx(iconSizeClass, iconPositionClass, "pointer-events-none");
 </script>

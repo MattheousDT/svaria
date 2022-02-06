@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { WindowSplitter } from "svaria";
-	import IconClipboard from "~icons/uil/clipboard";
+	import IconClipboard from "~icons/uil/clipboard-notes";
 	import IconGripLines from "~icons/uil/grip-horizontal-line";
 	import Button from "./button.svelte";
+	import IconSvelte from "./icons/icon_svelte.svelte";
 
 	export let value = 50;
 	let container: HTMLDivElement;
@@ -13,16 +14,16 @@
 	};
 </script>
 
-<div class="example grid w-full h-lg my-10" bind:this={container} style:grid-template-columns="{value}% 1rem auto">
+<div
+	class="example grid w-full h-full max-h-60vh mt-16"
+	bind:this={container}
+	style:grid-template-columns="{value}% 2rem auto"
+>
 	<div
 		id="code-pane"
 		bind:this={code}
 		class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto"
 	>
-		<Button on:click={copyToClipboard} size="sm" theme="secondary" class="absolute top-4 right-4">
-			<IconClipboard />
-			Copy to clipboard
-		</Button>
 		<slot />
 	</div>
 	<WindowSplitter
@@ -33,8 +34,8 @@
 		maxValue={70}
 		containerEl={container}
 	>
-		<span class="flex h-full w-4 justify-center items-center">
-			<IconGripLines class="transform rotate-90" />
+		<span class="flex h-full w-8 justify-center items-center">
+			<IconGripLines class="transform rotate-90 text-grey" />
 		</span>
 	</WindowSplitter>
 	<div
@@ -45,9 +46,22 @@
 	</div>
 </div>
 
+<div class="flex justify-center mt-3 mb-16">
+	<Button on:click={copyToClipboard} class="mr-4" theme="tertiary" let:iconClass>
+		<IconClipboard class={iconClass} />
+		Copy to clipboard
+	</Button>
+	<Button on:click={copyToClipboard} theme="tertiary" let:iconClass>
+		<IconSvelte class={iconClass} />
+		View in Svelte REPL
+	</Button>
+</div>
+
 <style lang="scss">
 	.example {
 		will-change: grid-template-columns;
+		grid-template-rows: 100%;
+
 		@media screen and (min-width: 1800px) {
 			margin-left: -7.5rem;
 			margin-right: -7.5rem;
@@ -74,5 +88,11 @@
 				height: 100%;
 			}
 		}
+	}
+
+	#preview-pane > :global(span) {
+		width: 100%;
+		height: 100%;
+		padding: 1rem;
 	}
 </style>

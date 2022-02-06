@@ -25,7 +25,7 @@
 	export let first = false;
 
 	/** Props that are required to be spread onto the child element of this component */
-	let props: svelte.JSX.HTMLProps<HTMLElement> = {
+	$: props = {
 		role: "menuitem",
 		tabindex: first ? 0 : -1,
 	};

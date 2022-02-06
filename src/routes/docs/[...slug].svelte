@@ -3,22 +3,19 @@
 	import Error from "$site/components/error.svelte";
 	import DocsLayout from "$site/components/layout/docs_layout.svelte";
 	import type { Load } from "@sveltejs/kit";
-	import { getCurrentLocale, locale } from "svelte-intl-precompile";
+	import { getCurrentLocale, locale, t } from "svelte-intl-precompile";
 
 	export const load: Load = async ({ params, session }) => {
 		let docs: any;
-		let availableInCurrentLocale: boolean;
+		let availableInCurrentLocale = true;
 
-		try {
-			docs = await import(`../../docs/${getCurrentLocale()}/${params.slug}.md`);
-			availableInCurrentLocale = true;
-		} catch {
-			try {
-				docs = await import(`../../docs/en/${params.slug}.md`);
-				availableInCurrentLocale = false;
-			} catch {
-				docs = null;
-			}
+		const modules = import.meta.glob("../../docs/**/*.md");
+
+		docs = modules[`../../docs/${getCurrentLocale()}/${params.slug}.md`];
+
+		if (!docs) {
+			docs = modules[`../../docs/en/${params.slug}.md`];
+			availableInCurrentLocale = false;
 		}
 
 		if (!docs) {
@@ -28,7 +25,9 @@
 			};
 		}
 
-		return { props: { body: docs.default, metadata: docs.metadata, availableInCurrentLocale } };
+		const final = await docs();
+
+		return { props: { body: final.default, metadata: final.metadata, availableInCurrentLocale } };
 	};
 </script>
 
@@ -47,22 +46,28 @@
 
 	let updateDocsLocale = async (locale: string) => {
 		let docs: any;
-		try {
-			docs = await import(`../../docs/${locale}/${$page.params.slug}.md`);
-			availableInCurrentLocale = true;
-		} catch {
-			try {
-				docs = await import(`../../docs/en/${$page.params.slug}.md`);
-				availableInCurrentLocale = false;
-			} catch {
-				docs = null;
-			}
+		let inCurrent = true;
+		const modules = import.meta.glob("../../docs/**/*.md");
+
+		docs = modules[`../../docs/${locale}/${$page.params.slug}.md`];
+
+		if (!docs) {
+			docs = modules[`../../docs/en/${$page.params.slug}.md`];
+			inCurrent = false;
 		}
 
-		if (docs) {
-			body = docs.default;
-			metadata = docs.metadata;
+		if (!docs) {
+			return {
+				status: 404,
+				error: "Page not found",
+			};
 		}
+
+		const final = await docs();
+
+		body = final.default;
+		metadata = final.metadata;
+		availableInCurrentLocale = inCurrent;
 	};
 
 	$: {
@@ -72,7 +77,7 @@
 
 <DocsLayout>
 	{#if !availableInCurrentLocale}
-		<Error>This page is not available in your current language.</Error>
+		<Error>{$t("errors.language_not_available")}</Error>
 	{/if}
 	<div class="content">
 		<h1 class="font-heading text-7xl mb-4 font-bold text-blue-900">
@@ -90,26 +95,80 @@
 	</div>
 </DocsLayout>
 
-<style lang="scss">
+<style lang="scss" global>
 	.md {
-		margin: 3.75rem 0;
+		@apply my-16 text-grey;
 
-		:global(table) {
-			width: 100%;
-			text-align: left;
-			border-collapse: collapse;
+		> h2,
+		> h3,
+		> h4,
+		> h5,
+		> h6 {
+			@apply font-heading font-bold text-blue-900 not-first:mt-10;
+		}
+
+		> p {
+			@apply mt-5;
+		}
+
+		> h2 {
+			@apply text-4xl;
+		}
+
+		> h3 {
+			@apply text-3xl;
+		}
+
+		> h4 {
+			@apply text-2xl;
+		}
+
+		> h5 {
+			@apply text-xl;
+		}
+
+		a {
+			@apply text-red underline hover:text-blue-900;
+		}
+
+		table {
 			margin: 2rem 0;
+			width: 100%;
+			border: 2px solid #e9e9e9;
+			border-collapse: separate;
+			border-left: 0;
+			border-radius: 0.5rem;
+			border-spacing: 0px;
 		}
-		:global(td),
-		:global(th) {
-			// border: 2px solid $navy;
+		thead {
+			display: table-header-group;
+			vertical-align: middle;
+			border-color: inherit;
+			border-collapse: separate;
+			@apply text-blue-900;
+		}
+		tr {
+			display: table-row;
+			vertical-align: inherit;
+			border-color: inherit;
+		}
+		th,
+		td {
 			padding: 10px 20px;
+			text-align: left;
+			vertical-align: top;
+			border-left: 2px solid #e9e9e9;
 		}
-
-		:global(th) {
-			font-size: 18px;
-			// font-family: $sans-primary;
-			font-weight: 700;
+		td {
+			border-top: 2px solid #e9e9e9;
+		}
+		thead:first-child tr:first-child th:first-child,
+		tbody:first-child tr:first-child td:first-child {
+			border-radius: 0.5rem 0 0 0;
+		}
+		thead:last-child tr:last-child th:first-child,
+		tbody:last-child tr:last-child td:first-child {
+			border-radius: 0 0 0 0.5rem;
 		}
 	}
 </style>

@@ -39,6 +39,9 @@
     "treegrid": "트리 그리드",
     "window_splitter": "창 분할기"
   },
+  "errors": {
+    "language_not_available": "이 페이지는 현재 언어로 제공되지 않습니다."
+  },
   "home": {
     "caption": "상용구를 줄이고 모든 디자인으로 확장할 수 있는 액세스 가능한 앱을 작성할 수 있도록 하는 것을 목표로 하는 Svelte 작업, 구성 요소 및 저장소의 라이브러리입니다.",
     "heading": "Svelte 앱을 위한 내게 <0>필요한</0> 옵션 툴킷"

@@ -39,6 +39,9 @@
     "treegrid": "Cuadrícula de árboles",
     "window_splitter": "Divisor de ventana"
   },
+  "errors": {
+    "language_not_available": "Esta página no está disponible en su idioma actual."
+  },
   "home": {
     "caption": "Una biblioteca de acciones, componentes y tiendas de Svelte que tiene como objetivo reducir el modelo estándar y permitirle escribir aplicaciones accesibles que pueden adaptarse a cualquier diseño.",
     "heading": "<0>Accesibilidad</0> para Svelte simplificada"

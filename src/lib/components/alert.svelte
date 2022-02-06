@@ -14,7 +14,7 @@
 	```
 -->
 <script lang="ts">
-	let props: svelte.JSX.HTMLProps<HTMLElement> = {
+	$: props = {
 		role: "alert",
 		"aria-live": "assertive",
 		"aria-atomic": true,

@@ -11,11 +11,14 @@
 	import IconBooks from "~icons/uil/books";
 	import Button from "./button.svelte";
 	import SidebarTopLink from "./sidebar/sidebar_top_link.svelte";
+	import { onMount } from "svelte";
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 500),
 		easing: quadOut,
 	});
+
+	let menu: HTMLElement;
 
 	$: topItems = [
 		{
@@ -78,9 +81,22 @@
 			$usingKeyboard: "/docs/stores/usingKeyboard",
 		},
 	};
+
+	onMount(() => {
+		// Ultra hack
+		setTimeout(
+			() =>
+				menu.querySelector("[data-selected='true'")?.scrollIntoView({
+					block: "center",
+					behavior: "smooth",
+				}),
+			500
+		);
+	});
 </script>
 
 <aside
+	bind:this={menu}
 	class="hidden lg:block sticky top-[5.25rem] h-[calc(100vh-5.25rem)] w-full max-w-[300px] px-4 overflow-y-auto shadow-card"
 >
 	<ul class="my-8">
@@ -100,7 +116,7 @@
 				{#each Object.entries(items).sort((a, b) => a[0].localeCompare(b[0], $locale)) as [item, link]}
 					{@const selected = $page.url.pathname === link}
 
-					<li class="relative">
+					<li class="relative" data-selected={selected}>
 						{#if selected}
 							<span class="absolute -left-4 top-0 h-full w-1 bg-red" />
 						{/if}
