@@ -4,16 +4,16 @@ export default defineConfig({
 	theme: {
 		colors: {
 			orange: {
-				DEFAULT: "#CF445D",
-				500: "#CF445D",
+				DEFAULT: "#EF8C63",
+				500: "#EF8C63",
 				400: "#F2B195",
 				300: "#F8D4C5",
 				200: "#F8D4C5",
 				100: "#FBF0EC",
 			},
 			red: {
-				DEFAULT: "#E75972",
-				500: "#E75972",
+				DEFAULT: "#CF445D",
+				500: "#CF445D",
 				400: "#F4879B",
 				300: "#FBCED6",
 				200: "#FFDCE2",
