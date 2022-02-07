@@ -1,8 +1,9 @@
 <script>
-	import { Alert, Menubar, MenuItem, clickoutside, keycombo } from "svaria";
-	import WindowSplitterExample from "$site/components/examples/window_splitter_example.svelte";
 	import Feed from "$lib/components/feed/feed.svelte";
 	import FeedItem from "$lib/components/feed/feed_item.svelte";
+	import ModalExample from "$site/components/examples/modal_example.svelte";
+	import WindowSplitterExample from "$site/components/examples/window_splitter_example.svelte";
+	import { Alert, clickoutside, keycombo, Menubar, MenuItem } from "svaria";
 	import { fly } from "svelte/transition";
 
 	const konamiCode = [
@@ -63,6 +64,9 @@
 			<!-- <ParallaxButton {...props} color="rose" on:click={() => console.log("안녕")}>Say 안녕</ParallaxButton> -->
 		</MenuItem>
 	</Menubar>
+
+	<h3>Modal</h3>
+	<ModalExample />
 
 	<h3>Window splitter</h3>
 	<WindowSplitterExample />

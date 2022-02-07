@@ -10,6 +10,7 @@ export { default as Feed } from "./components/feed/feed.svelte";
 export { default as FeedItem } from "./components/feed/feed_item.svelte";
 export { default as Menubar } from "./components/menubar/menubar.svelte";
 export { default as MenuItem } from "./components/menubar/menuitem.svelte";
+export { default as Modal } from "./components/modal/modal.svelte";
 export { default as WindowSplitter } from "./components/window_splitter/window_splitter.svelte";
 
 // Stores
