@@ -13,11 +13,12 @@
 			id="demo-modal"
 			labelId="demo-modal-title"
 			descriptionId="demo-modal-description"
+			focusOnOpenId="demo-modal-title"
 			focusOnCloseId="demo-modal-trigger"
 			on:close={() => (visible = false)}
 			class="bg-white rounded-xl w-full max-w-md p-8"
 		>
-			<h1 id="demo-modal-title">Epic modal</h1>
+			<h1 id="demo-modal-title" tabindex="0">Epic modal</h1>
 			<p id="demo-modal-description">Wow! Modals! So cool! 😎</p>
 		</Modal>
 	</div>
