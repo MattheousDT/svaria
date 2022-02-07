@@ -157,6 +157,10 @@
 			@apply text-red font-bold underline hover:text-blue-900;
 		}
 
+		kbd {
+			@apply rounded-lg bg-grey-200 py-1 px-2 border border-b-4 border-grey-300 text-sm;
+		}
+
 		table {
 			margin: 2rem 0;
 			width: 100%;
