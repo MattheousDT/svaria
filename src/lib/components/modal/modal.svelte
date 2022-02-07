@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { IShortcut } from "$lib/@types/shortcuts";
 	import clickoutside from "$lib/actions/clickoutside";
+	import trapfocus from "$lib/actions/trapfocus";
 	import shortcuts from "$lib/stores/shortcuts";
 	import { createEventDispatcher, onDestroy, onMount } from "svelte";
 
@@ -11,7 +12,7 @@
 	/** An element ID selector that points to one or more pieces of text which gives an appropriate description of the modal's contents */
 	export let descriptionId: string = null;
 	/** An element ID selector that points to the element you'd like keyboard focus to switch to once the modal has opened. E.g. the first text input in a form */
-	export let focusOnOpenId: string = null;
+	export let focusOnOpenId: string;
 	/** An element ID selector that points to the element you'd like keyboard focus to switch to after the modal has closed.
 	 *
 	 * This is nessasary so that the focus isn't reset to the top of the page and that the user can continue navigating from where they left off.
@@ -34,11 +35,7 @@
 	onMount(() => {
 		shortcuts.global.add(id, modalShortcuts);
 
-		if (focusOnOpenId) {
-			document.getElementById(focusOnOpenId);
-		} else {
-			modal.focus();
-		}
+		document.getElementById(focusOnOpenId).focus();
 	});
 
 	onDestroy(() => {
@@ -60,6 +57,7 @@
 	class:svaria__modal={true}
 	bind:this={modal}
 	use:clickoutside={() => dispatch("close")}
+	use:trapfocus
 >
 	<slot />
 </div>

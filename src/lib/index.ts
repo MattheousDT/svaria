@@ -3,6 +3,7 @@ export { default as clickoutside } from "./actions/clickoutside";
 export { default as contextual } from "./actions/contextual";
 export { default as keycombo } from "./actions/keycombo";
 export { default as shortcut } from "./actions/shortcut";
+export { default as trapfocus } from "./actions/trapfocus";
 
 // Components
 export { default as Alert } from "./components/alert/alert.svelte";
