@@ -5,7 +5,7 @@ title: Alert
 description: An alert is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task. Dynamically rendered alerts are automatically announced by most screen readers, and in some operating systems, they may trigger an alert sound. It is important to note that, at this time, screen readers do not inform users of alerts that are present on the page before page load completes.
 slug: /components/alert
 aria: https://www.w3.org/TR/wai-aria-practices-1.1/#alert
-github: https://github.com/MattheousDT/svaria/tree/master/src/lib/components/alert.svelte
+github: https://github.com/MattheousDT/svaria/tree/master/src/lib/components/alert/alert.svelte
 ---
 
 <script>

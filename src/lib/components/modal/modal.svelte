@@ -20,7 +20,6 @@
 	export let focusOnCloseId: string;
 
 	let dispatch = createEventDispatcher();
-	let modal: HTMLDivElement;
 
 	let modalShortcuts: IShortcut[];
 	$: modalShortcuts = [
@@ -41,9 +40,7 @@
 	onDestroy(() => {
 		shortcuts.global.remove(id);
 
-		if (focusOnCloseId) {
-			document.getElementById(focusOnCloseId).focus();
-		}
+		document.getElementById(focusOnCloseId).focus();
 	});
 </script>
 
@@ -55,7 +52,6 @@
 	aria-describedby={descriptionId}
 	aria-modal={true}
 	class:svaria__modal={true}
-	bind:this={modal}
 	use:clickoutside={() => dispatch("close")}
 	use:trapfocus
 >
