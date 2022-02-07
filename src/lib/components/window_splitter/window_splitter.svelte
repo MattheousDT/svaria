@@ -50,7 +50,8 @@
 		document.addEventListener("mousemove", handleMousemove);
 	}
 
-	let shortcuts: IShortcut[] = [
+	let shortcuts: IShortcut[];
+	$: shortcuts = [
 		...(direction === "vertical"
 			? [
 					{

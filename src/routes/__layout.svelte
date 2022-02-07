@@ -46,7 +46,9 @@
 	<main class="flex-1" style:padding-top="{navHeight / 16}rem">
 		<slot />
 	</main>
-	<footer class="flex items-center justify-center text-center text-grey p-4">Made with ❤ in Belfast</footer>
+	<footer class="flex items-center justify-center text-center text-grey p-8 z-10 bg-grey-200">
+		Made with ❤ in Belfast
+	</footer>
 </div>
 
 <!-- <Shortcuts /> -->
@@ -94,6 +96,9 @@
 		font-size: 1rem;
 
 		.token {
+			&.punctuation {
+				color: #bfc7d5;
+			}
 			&.keyword,
 			&.namespace {
 				color: #c792ea;
@@ -101,18 +106,17 @@
 			&.function {
 				color: #82aaff;
 			}
-			&.tag {
+			&.tag,
+			&.interpolation-punctuation {
 				color: #ff5572;
 			}
 			&.attr-name,
 			&.class-name {
 				color: #ffcb6b;
 			}
-			&.attr-value {
+			&.attr-value,
+			&.string {
 				color: #c3e88d;
-			}
-			&.punctuation {
-				color: #bfc7d5;
 			}
 			&.operator {
 				color: #89ddff;

@@ -30,15 +30,18 @@
 </table>
 
 <div class="example grid w-full h-lg my-10" bind:this={container} style:grid-template-columns="{value}% 1rem auto">
-	<div id="code-pane" class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto bg-red-200">
+	<div
+		id="example-primary-pane"
+		class="rounded-lg shadow-card relative flex items-center justify-center overflow-auto bg-red-200"
+	>
 		<h2>Primary content</h2>
 	</div>
 	<WindowSplitter
-		primaryPaneId="code-pane"
+		primaryPaneId="example-primary-pane"
 		label="Demo splitter"
 		bind:value
-		minValue={30}
-		maxValue={70}
+		{minValue}
+		{maxValue}
 		containerEl={container}
 	>
 		<span class="flex h-full w-4 justify-center items-center">
@@ -66,7 +69,7 @@
 		}
 	}
 
-	#code-pane {
+	#example-primary-pane {
 		// font-size: 0.875rem;
 		> :global(pre) {
 			width: 100%;

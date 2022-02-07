@@ -14,6 +14,8 @@
 	```
 -->
 <script lang="ts">
+	let props: Pick<svelte.JSX.HTMLProps<HTMLElement>, "role" | "aria-live" | "aria-atomic">;
+
 	$: props = {
 		role: "alert",
 		"aria-live": "assertive",
