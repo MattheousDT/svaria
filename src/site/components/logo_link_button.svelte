@@ -15,7 +15,10 @@
 	};
 </script>
 
-<a {href} class="inline-flex items-center w-full md:w-auto p-3 pr-8 rounded-lg bg-grey-200 hover:bg-grey-300">
+<a
+	{href}
+	class="inline-flex items-center w-full md:w-auto p-3 pr-8 rounded-lg bg-grey-200 hover:bg-grey-300 focus:outline-none focus-visible:(ring ring-red)"
+>
 	<div class="flex items-center justify-center w-12 h-12">
 		<svelte:component this={logos[icon]} class="max-w-full h-8 w-full max-w-10 text-blue-900" />
 	</div>

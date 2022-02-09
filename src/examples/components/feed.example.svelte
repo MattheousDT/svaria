@@ -1,7 +1,7 @@
 <script>
+	import Button from "$site/components/button.svelte";
 	import { Feed, FeedItem } from "svaria";
 	import { onMount } from "svelte";
-	import Button from "../button.svelte";
 
 	let loading = false;
 	let page = 0;

@@ -1,4 +1,4 @@
-type IClickOutsideActionOptions = (event: EventTarget & HTMLElement) => void;
+type IClickOutsideActionOptions = (target: EventTarget & HTMLElement) => void;
 
 /**
  * Adds a click handler that only fires whenever the click is not the element passed in.
@@ -9,7 +9,7 @@ type IClickOutsideActionOptions = (event: EventTarget & HTMLElement) => void;
  *   let modalOpen = true;
  * </script>
  *
- * <div use:clickoutside={() => (modalOpen = false))} />
+ * <div use:clickoutside={() => (modalOpen = false)}>
  *   <!-- ^ this element or it's children won't trigger the callback when clicked -->
  * </div>
  * ```

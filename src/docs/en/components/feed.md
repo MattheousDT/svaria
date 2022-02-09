@@ -9,7 +9,7 @@ github: https://github.com/MattheousDT/svaria/tree/master/src/lib/components/fee
 ---
 
 <script>
-  import FeedExample from "$site/components/examples/feed_example.svelte";
+  import FeedExample from "$examples/components/feed.example.svelte";
   import Example from "$site/components/example.svelte";
 </script>
 

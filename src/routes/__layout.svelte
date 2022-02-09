@@ -80,50 +80,11 @@
 		font-family: "Fira Code", "Consolas", monospace;
 	}
 
-	code:not([class^="language"]) {
-		padding: 4px 8px;
-		border-radius: 6px;
-		background: #e9e9e9;
-		display: inline-block;
+	pre:not(.shiki) code {
+		@apply inline-block py-1 px-2 rounded-md bg-grey-300;
 	}
 
-	code[class^="language"] {
-		display: block;
-		padding: 2rem;
-		background-color: #292d3e;
-		color: #bfc7d5;
-		overflow-x: auto;
-		font-size: 1rem;
-
-		.token {
-			&.punctuation {
-				color: #bfc7d5;
-			}
-			&.keyword,
-			&.namespace {
-				color: #c792ea;
-			}
-			&.function {
-				color: #82aaff;
-			}
-			&.tag,
-			&.interpolation-punctuation {
-				color: #ff5572;
-			}
-			&.attr-name,
-			&.class-name {
-				color: #ffcb6b;
-			}
-			&.attr-value,
-			&.string {
-				color: #c3e88d;
-			}
-			&.operator {
-				color: #89ddff;
-			}
-			&.number {
-				color: #f78c6c;
-			}
-		}
+	.shiki {
+		@apply block p-8 overflow-x-auto rounded-lg;
 	}
 </style>

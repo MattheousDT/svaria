@@ -13,7 +13,7 @@
 			? "border-transparent text-white bg-red"
 			: theme === "secondary"
 			? "border-red text-red bg-transparent"
-			: "border-transparent text-grey bg-transparent hover:bg-grey-200";
+			: "border-transparent text-grey bg-transparent hover:bg-grey-200 focus-visible:ring ring-red";
 
 	$: sizeClasses =
 		size === "sm"

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Button from "$site/components/button.svelte";
 	import { Modal } from "svaria";
-	import Button from "../button.svelte";
 
 	let visible = false;
 </script>

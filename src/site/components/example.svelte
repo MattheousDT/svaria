@@ -33,9 +33,10 @@
 		minValue={30}
 		maxValue={70}
 		containerEl={container}
+		class="text-grey focus:outline-none focus-visible:(bg-red text-white) rounded-lg"
 	>
 		<span class="flex h-full w-8 justify-center items-center">
-			<IconGripLines class="transform rotate-90 text-grey" />
+			<IconGripLines class="transform rotate-90" />
 		</span>
 	</WindowSplitter>
 	<div
@@ -79,10 +80,11 @@
 
 	#code-pane {
 		// font-size: 0.875rem;
-		> :global(pre) {
+		> :global(.shiki) {
 			width: 100%;
 			height: 100%;
 			margin: 0;
+			border-radius: 0;
 
 			> :global(code) {
 				height: 100%;

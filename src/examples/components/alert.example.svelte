@@ -1,6 +1,6 @@
 <script>
+	import Button from "$site/components/button.svelte";
 	import { Alert } from "svaria";
-	import Button from "../button.svelte";
 
 	let alertVisible = false;
 </script>

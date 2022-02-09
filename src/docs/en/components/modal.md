@@ -9,7 +9,7 @@ github: https://github.com/MattheousDT/svaria/tree/master/src/lib/components/mod
 ---
 
 <script>
-  import ModalExample from "$site/components/examples/modal_example.svelte";
+  import ModalExample from "$examples/components/modal.example.svelte";
   import Example from "$site/components/example.svelte";
 </script>
 

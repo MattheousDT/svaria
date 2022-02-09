@@ -44,11 +44,12 @@
 	$: bottomItems = {
 		[$t("common.actions")]: {
 			// "use:arrowkeys": "/docs/actions/arrowkeys",
-			// "use:contextual": "/docs/actions/contextual",
-			// "use:clickOutside": "/docs/actions/clickOutside",
+			"use:contextual": "/docs/actions/contextual",
+			"use:clickoutside": "/docs/actions/clickoutside",
 			// "use:longpress": "/docs/actions/longpress",
-			// "use:shortcut": "/docs/actions/shortcut",
+			"use:shortcut": "/docs/actions/shortcut",
 			// "use:table": "/docs/actions/table",
+			"use:trapfocus": "/docs/actions/trapfocus",
 		},
 		[$t("common.components")]: {
 			// [$t("components.accordion")]: "/docs/components/accordion",
@@ -78,6 +79,7 @@
 		},
 		[$t("common.stores")]: {
 			// $announcer: "/docs/stores/announcer",
+			$prefersReducedMotion: "/docs/stores/prefers-reduced-motion",
 			// $shortcuts: "/docs/stores/shortcuts",
 			// $usingKeyboard: "/docs/stores/usingKeyboard",
 		},
@@ -88,7 +90,7 @@
 		setTimeout(
 			() =>
 				menu.querySelector("[data-selected='true'")?.scrollIntoView({
-					block: "center",
+					block: "nearest",
 					behavior: "smooth",
 				}),
 			500

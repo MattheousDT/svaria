@@ -9,7 +9,7 @@ github: https://github.com/MattheousDT/svaria/tree/master/src/lib/components/ale
 ---
 
 <script>
-  import AlertExample from "$site/components/examples/alert_example.svelte";
+  import AlertExample from "$examples/components/alert.example.svelte";
   import Example from "$site/components/example.svelte";
 </script>
 

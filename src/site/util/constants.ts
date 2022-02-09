@@ -1,5 +1,5 @@
 export const LINKS = {
-	documentation: "/demo",
+	documentation: "/docs/getting-started",
 	getStarted: "/docs/getting-started",
 };
 
