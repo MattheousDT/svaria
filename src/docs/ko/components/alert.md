@@ -10,7 +10,7 @@ repl: /
 ---
 
 <script>
-  import AlertExample from "$site/components/examples/alert_example.svelte";
+  import AlertExample from "$examples/components/alert.example.svelte";
   import Example from "$site/components/example.svelte";
 </script>
 
